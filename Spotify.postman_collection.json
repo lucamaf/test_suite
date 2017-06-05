@@ -1,0 +1,39 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Spotify",
+		"_postman_id": "dc0602ad-5e95-f5a5-3657-1380402591a7",
+		"description": "spotify test env",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET search artist ABBA",
+			"request": {
+				"url": "https://api.spotify.com/v1/search?q=ABBA&type=artist",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET APICAST spotify search artist ABBA",
+			"request": {
+				"url": "https://spotify-service-2445581514978.staging.apicast.io:443/v1/search?q=ABBA&type=artist",
+				"method": "GET",
+				"header": [
+					{
+						"key": "user-key",
+						"value": "d04153f06611add91590c377cdb19868",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
