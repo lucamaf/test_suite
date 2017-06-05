@@ -1,0 +1,5695 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Open Bank Project API",
+		"_postman_id": "143b1820-7ae0-5960-2c04-3e64860c255b",
+		"description": "An Open Source API for Banks. (c) TESOBE Ltd. 2011 - 2016. Licensed under the AGPL and commercial licences.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "accounts",
+			"description": "Folder for accounts",
+			"item": [
+				{
+					"name": "Get Public Accounts at all Banks.",
+					"request": {
+						"url": "https://apisandbox.openbankproject.com/obp/v3.0.0/accounts/public",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get public accounts at all banks (Anonymous access). Returns accounts that contain at least one public view (a view where is_public is true) For each account the API returns the ID and the available views.</p><p>Authentication is Optional</p>"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "banks",
+			"description": "Folder for banks",
+			"item": [
+				{
+					"name": "Get Banks",
+					"request": {
+						"url": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get banks on this API instance Returns a list of banks supported on this server:</p><ul>  <li>ID used as parameter in URLs</li>  <li>Short and full name of bank</li>  <li>Logo URL</li>  <li>Website</li></ul>"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Bank",
+					"request": {
+						"url": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Create a new bank (Authenticated access). Authentication is Mandatory</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Bank",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get the bank specified by BANK_ID Returns information about a single bank specified by BANK_ID including:</p><ul>  <li>Short and full name of bank</li>  <li>Logo URL</li>  <li>Website</li></ul>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Accounts at one Bank (Public and Private).",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get accounts at one bank that the user has access to (Authenticated + Anonymous access). Returns the list of accounts at BANK_ID that the user has access to. For each account the API returns the account ID and the available views.</p><p>If the user is not authenticated, the list will contain only the accounts providing public views. Authentication is Optional</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Account",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Create Account at bank specified by BANK_ID with Id specified by ACCOUNT_ID.</p><p>The User can create an Account for themself or an Account for another User if they have CanCreateAccount role.</p><p>If USER_ID is not specified the account will be owned by the logged in User.</p><p>Note: The Amount must be zero.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Account Label.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Update the label for the account. The label is how the account is known to the account owner e.g. 'My savings account' </p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Account by Id (Full)",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/account",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"account"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Information returned about an account specified by ACCOUNT_ID as moderated by the view (VIEW_ID):</p><ul>  <li>Number</li>  <li>Owners</li>  <li>Type</li>  <li>Balance</li>  <li>IBAN</li>  <li>Available views (sorted by short_name)</li></ul><p>More details about the data moderation by the view <a href=\"#1_2_1-getViewsForBankAccount\">here</a>.</p><p>PSD2 Context: PSD2 requires customers to have access to their account information via third party applications. This call provides balance and other account information via delegated authenticaiton using OAuth.</p><p>OAuth authentication is required if the 'is_public' field in view (VIEW_ID) is not set to <code>true</code>.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Counterparties of one Account.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/counterparties",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"counterparties"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get the counterparties for the account / view.</p><p>Authentication is Mandatory</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Create counterparty for an account",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/counterparties",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"counterparties"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Create counterparty.</p><p>Counterparties are created for the account / view They are how the user of the view (e.g. account owner) refers to the other side of the transaction</p><p>name is the human readable name (e.g. Piano teacher, Miss Nipa)</p><p>other_bank_id is an (internal) ID for the bank of the bank of the counterparty (if known)</p><p>other_account_id is an (internal) ID for the bank account of the counterparty (if known)</p><p>other_account_provider is a code that tells the system where that bank is hosted. Will be OBP if its known to the API. Usage of this flag (in API / connectors) is work in progress.</p><p>account_routing_scheme is a code that dictates the nature of the account_routing_address e.g. IBAN</p><p>account_routing_address is an instance of account_routing_scheme that can be used to route payments to external systems. e.g. an IBAN number</p><p>bank_routing_scheme is a code that dictates the nature of the bank_routing_address e.g. \"BIC\",</p><p>bank_routing_address is an instance of bank_routing_scheme</p><p>is_beneficiary must be set to true in order to send payments to this counterparty</p><p>The view specified by VIEW_ID must have the canAddCounterparty permission</p><p>Authentication is Mandatory</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Other Accounts of one Account.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns data about all the other accounts that have shared at least one transaction with the ACCOUNT_ID at BANK_ID. Authentication is Optional Authentication is required if the view VIEW_ID is not public.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Other Account by Id.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns data about the Other Account that has shared at least one transaction with ACCOUNT_ID at BANK_ID. Authentication is Optional Authentication is required if the view is not public.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Other Account Metadata.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/metadata",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"metadata"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get metadata of one other account. Returns only the metadata about one other bank account (OTHER_ACCOUNT_ID) that had shared at least one transaction with ACCOUNT_ID at BANK_ID.</p><p>Authentication via OAuth is required if the view is not public.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Counterparty Corporate Location",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/metadata/corporate_location",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"metadata",
+								"corporate_location"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Update the geolocation of the counterparty's registered address</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Corporate Location to Counterparty",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/metadata/corporate_location",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"metadata",
+								"corporate_location"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Add the geolocation of the counterparty's registered address</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Counterparty Corporate Location.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/metadata/corporate_location",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"metadata",
+								"corporate_location"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "<p>Delete corporate location of other bank account. Delete the geolocation of the counterparty's registered address</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Counterparty Image Url",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/metadata/image_url",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"metadata",
+								"image_url"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Update the url that points to the logo of the counterparty</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Add image url to other bank account.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/metadata/image_url",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"metadata",
+								"image_url"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Add a url that points to the logo of the counterparty</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Counterparty Image URL",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/metadata/image_url",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"metadata",
+								"image_url"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "<p>Delete image url of other bank account.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Counterparty More Info",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/metadata/more_info",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"metadata",
+								"more_info"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Update the more info description of the counter party from the perpestive of the account e.g. My dentist.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Counterparty More Info",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/metadata/more_info",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"metadata",
+								"more_info"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Add a description of the counter party from the perpestive of the account e.g. My dentist.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete more info of other bank account.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/metadata/more_info",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"metadata",
+								"more_info"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Open Corporates Url of Counterparty",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/metadata/open_corporates_url",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"metadata",
+								"open_corporates_url"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Update open corporate url of other bank account.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Open Corporates URL to Counterparty",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/metadata/open_corporates_url",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"metadata",
+								"open_corporates_url"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Add open corporates url to other bank account.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Counterparty Open Corporates URL",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/metadata/open_corporates_url",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"metadata",
+								"open_corporates_url"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "<p>Delete open corporate url of other bank account.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Counterparty Physical Location",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/metadata/physical_location",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"metadata",
+								"physical_location"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Update geocoordinates of the counterparty's main location</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Add physical location to other bank account.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/metadata/physical_location",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"metadata",
+								"physical_location"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Add geocoordinates of the counterparty's main location</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Counterparty Physical Location.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/metadata/physical_location",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"metadata",
+								"physical_location"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "<p>Delete physical location of other bank account.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Update url of other bank account.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/metadata/url",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"metadata",
+								"url"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>A url which represents the counterparty (home page url etc.)</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Add url to other bank account.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/metadata/url",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"metadata",
+								"url"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>A url which represents the counterparty (home page url etc.)</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete url of other bank account.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/metadata/url",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"metadata",
+								"url"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Other Account Private Alias",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/private_alias",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"private_alias"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns the private alias of the other account OTHER_ACCOUNT_ID.</p><p>Authentication is Optional Authentication is required if the view is not public.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Counterparty Private Alias",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/private_alias",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"private_alias"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Updates the private alias of the counterparty (AKA other account) OTHER_ACCOUNT_ID.</p><p>Authentication is Optional Authentication is required if the view is not public.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Other Account Private Alias",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/private_alias",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"private_alias"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Creates a private alias for the other account OTHER_ACCOUNT_ID.</p><p>Authentication is Optional Authentication is required if the view is not public.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Counterparty Private Alias",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/private_alias",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"private_alias"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "<p>Deletes the private alias of the other account OTHER_ACCOUNT_ID.</p><p>Authentication is Optional Authentication is required if the view is not public.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get public alias of other bank account.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/public_alias",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"public_alias"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns the public alias of the other account OTHER_ACCOUNT_ID. Authentication is Optional OAuth authentication is required if the view is not public.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Update public alias of other bank account.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/public_alias",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"public_alias"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Updates the public alias of the other account / counterparty OTHER_ACCOUNT_ID.</p><p>Authentication is Optional Authentication is required if the view is not public.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Add public alias to other bank account.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/public_alias",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"public_alias"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Creates the public alias for the other account OTHER_ACCOUNT_ID.</p><p>Authentication is Optional Authentication is required if the view is not public.</p><p>Note: Public aliases are automatically generated for new 'other accounts / counterparties', so this call should only be used if the public alias was deleted.</p><p>The VIEW_ID parameter should be a view the caller is permitted to access to and that has permission to create public aliases.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Counterparty Public Alias",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/other_accounts/:OTHER_ACCOUNT_ID/public_alias",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"other_accounts",
+								":OTHER_ACCOUNT_ID",
+								"public_alias"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{OTHER_ACCOUNT_ID}}",
+									"id": "OTHER_ACCOUNT_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "<p>Deletes the public alias of the other account OTHER_ACCOUNT_ID.</p><p>Authentication is Optional Authentication is required if the view is not public.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transaction Request Types for Account",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transaction-request-types",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transaction-request-types"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns the Transation Request Types that the account specified by ACCOUNT_ID and view specified by VIEW_ID has access to.</p><p>These are the ways this API Server can create a Transaction via a Transaction Request (as opposed to Transaction Types which include external types too e.g. for Transactions created by core banking etc.)</p><p>A Transaction Request Type internally determines:</p><ul>  <li>the required Transaction Request 'body' i.e. fields that define the 'what' and 'to' of a Transaction Request,</li>  <li>the type of security challenge that may be be raised before the Transaction Request proceeds, and</li>  <li>the threshold of that challenge.</li></ul><p>For instance in a 'SANDBOX_TAN' Transaction Request, for amounts over 1000 currency units, the user must supply a positive integer to complete the Transaction Request and create a Transaction.</p><p>This approach aims to provide only one endpoint for initiating transactions, and one that handles challenges, whilst still allowing flexibility with the payload and internal logic.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Transaction Request (COUNTERPARTY)",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transaction-request-types/COUNTERPARTY/transaction-requests",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transaction-request-types",
+								"COUNTERPARTY",
+								"transaction-requests"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Initiate a Payment via creating a Transaction Request.</p><p>In OBP, a <code>transaction request</code> may or may not result in a <code>transaction</code>. However, a <code>transaction</code> only has one possible state: completed.</p><p>A <code>Transaction Request</code> can have one of several states.</p><p><code>Transactions</code> are modeled on items in a bank statement that represent the movement of money.</p><p><code>Transaction Requests</code> are requests to move money which may or may not succeeed and thus result in a <code>Transaction</code>.</p><p>A <code>Transaction Request</code> might create a security challenge that needs to be answered before the <code>Transaction Request</code> proceeds.</p><p>Transaction Requests contain charge information giving the client the opportunity to proceed or not (as long as the challenge level is appropriate).</p><p>Transaction Requests can have one of several Transaction Request Types which expect different bodies. The escaped body is returned in the details key of the GET response. This provides some commonality and one URL for many different payment or transfer types with enough flexibility to validate them differently.</p><p>The payer is set in the URL. Money comes out of the BANK_ID and ACCOUNT_ID specified in the URL.</p><p>The payee is set in the request body. Money goes into the BANK_ID and ACCOUNT_ID specified in the request body.</p><p>In sandbox mode, TRANSACTION_REQUEST_TYPE is commonly set to SANDBOX_TAN. See getTransactionRequestTypesSupportedByBank for all supported types.</p><p>In sandbox mode, if the amount is less than 1000 EUR (any currency, unless it is set differently on this server), the transaction request will create a transaction without a challenge, else the Transaction Request will be set to INITIALISED and a challenge will need to be answered.</p><p>If a challenge is created you must answer it using Answer Transaction Request Challenge before the Transaction is created.</p><p>You can transfer between different currency accounts. (new in 2.0.0). The currency in body must match the sending account.</p><p>The following static FX rates are available in sandbox mode:</p><p>{  \"XAF\":{  \"KRW\":1.87975,  \"JOD\":1.0,  \"GBP\":0.00131092,  \"AED\":0.00601555,  \"INR\":0.110241,  \"JPY\":0.185328,  \"USD\":0.00163773,  \"EUR\":0.00152449  },  \"KRW\":{  \"XAF\":0.531986,  \"JOD\":1.0,  \"GBP\":6.97389E-4,  \"AED\":0.00320019,  \"INR\":0.0586469,  \"JPY\":0.0985917,  \"USD\":8.7125E-4,  \"EUR\":8.11008E-4  },  \"JOD\":{  \"XAF\":1.0,  \"KRW\":1.0,  \"GBP\":1.0,  \"AED\":1.0,  \"INR\":1.0,  \"JPY\":1.0,  \"USD\":1.0,  \"EUR\":1.0  },  \"GBP\":{  \"XAF\":762.826,  \"KRW\":1433.92,  \"JOD\":1.0,  \"AED\":4.58882,  \"INR\":84.095,  \"JPY\":141.373,  \"USD\":1.2493,  \"EUR\":1.16278  },  \"AED\":{  \"XAF\":166.236,  \"KRW\":312.482,  \"GBP\":0.217921,  \"AED\":1.0,  \"INR\":18.3255,  \"JPY\":30.8081,  \"USD\":0.27225,  \"EUR\":0.253425  },  \"INR\":{  \"XAF\":9.07101,  \"KRW\":17.0512,  \"JOD\":1.0,  \"GBP\":0.0118913,  \"AED\":0.0545671,  \"JPY\":1.68111,  \"USD\":0.0148559,  \"EUR\":0.0138287  },  \"JPY\":{  \"XAF\":5.39585,  \"KRW\":10.1428,  \"JOD\":1.0,  \"GBP\":0.0070735,  \"AED\":0.032459,  \"INR\":0.594846,  \"USD\":0.00883695,  \"EUR\":0.00822592  },  \"USD\":{  \"XAF\":610.601,  \"KRW\":1147.78,  \"JOD\":1.0,  \"GBP\":0.800446,  \"AED\":3.6731,  \"INR\":67.3135,  \"JPY\":113.161,  \"EUR\":0.930886  },  \"EUR\":{  \"XAF\":655.957,  \"KRW\":1233.03,  \"JOD\":1.0,  \"GBP\":0.860011,  \"AED\":3.94594,  \"INR\":72.3136,  \"JPY\":121.567,  \"USD\":1.07428  } }</p><p>Transaction Requests satisfy PSD2 requirements thus:</p><p>1) A transaction can be initiated by a third party application.</p><p>2) The customer is informed of the charge that will incurred.</p><p>3) The call supports delegated authentication (OAuth)</p><p>See <a href=\"https://github.com/OpenBankProject/Hello-OBP-DirectLogin-Python/blob/master/hello_payments.py\">this python code</a> for a complete example of this flow.</p><p>There is further documentation <a href=\"https://github.com/OpenBankProject/OBP-API/wiki/Transaction-Requests\">here</a></p><p>Authentication is Mandatory</p><p>Special instructions for COUNTERPARTY:</p><p>When using a COUNTERPARTY to create a Transaction Request, specificy the counterparty_id in the body of the request. The routing details of the counterparty will be forwarded for the transfer.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Transaction Request (SEPA)",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transaction-request-types/SEPA/transaction-requests",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transaction-request-types",
+								"SEPA",
+								"transaction-requests"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Initiate a Payment via creating a Transaction Request.</p><p>In OBP, a <code>transaction request</code> may or may not result in a <code>transaction</code>. However, a <code>transaction</code> only has one possible state: completed.</p><p>A <code>Transaction Request</code> can have one of several states.</p><p><code>Transactions</code> are modeled on items in a bank statement that represent the movement of money.</p><p><code>Transaction Requests</code> are requests to move money which may or may not succeeed and thus result in a <code>Transaction</code>.</p><p>A <code>Transaction Request</code> might create a security challenge that needs to be answered before the <code>Transaction Request</code> proceeds.</p><p>Transaction Requests contain charge information giving the client the opportunity to proceed or not (as long as the challenge level is appropriate).</p><p>Transaction Requests can have one of several Transaction Request Types which expect different bodies. The escaped body is returned in the details key of the GET response. This provides some commonality and one URL for many different payment or transfer types with enough flexibility to validate them differently.</p><p>The payer is set in the URL. Money comes out of the BANK_ID and ACCOUNT_ID specified in the URL.</p><p>The payee is set in the request body. Money goes into the BANK_ID and ACCOUNT_ID specified in the request body.</p><p>In sandbox mode, TRANSACTION_REQUEST_TYPE is commonly set to SANDBOX_TAN. See getTransactionRequestTypesSupportedByBank for all supported types.</p><p>In sandbox mode, if the amount is less than 1000 EUR (any currency, unless it is set differently on this server), the transaction request will create a transaction without a challenge, else the Transaction Request will be set to INITIALISED and a challenge will need to be answered.</p><p>If a challenge is created you must answer it using Answer Transaction Request Challenge before the Transaction is created.</p><p>You can transfer between different currency accounts. (new in 2.0.0). The currency in body must match the sending account.</p><p>The following static FX rates are available in sandbox mode:</p><p>{  \"XAF\":{  \"KRW\":1.87975,  \"JOD\":1.0,  \"GBP\":0.00131092,  \"AED\":0.00601555,  \"INR\":0.110241,  \"JPY\":0.185328,  \"USD\":0.00163773,  \"EUR\":0.00152449  },  \"KRW\":{  \"XAF\":0.531986,  \"JOD\":1.0,  \"GBP\":6.97389E-4,  \"AED\":0.00320019,  \"INR\":0.0586469,  \"JPY\":0.0985917,  \"USD\":8.7125E-4,  \"EUR\":8.11008E-4  },  \"JOD\":{  \"XAF\":1.0,  \"KRW\":1.0,  \"GBP\":1.0,  \"AED\":1.0,  \"INR\":1.0,  \"JPY\":1.0,  \"USD\":1.0,  \"EUR\":1.0  },  \"GBP\":{  \"XAF\":762.826,  \"KRW\":1433.92,  \"JOD\":1.0,  \"AED\":4.58882,  \"INR\":84.095,  \"JPY\":141.373,  \"USD\":1.2493,  \"EUR\":1.16278  },  \"AED\":{  \"XAF\":166.236,  \"KRW\":312.482,  \"GBP\":0.217921,  \"AED\":1.0,  \"INR\":18.3255,  \"JPY\":30.8081,  \"USD\":0.27225,  \"EUR\":0.253425  },  \"INR\":{  \"XAF\":9.07101,  \"KRW\":17.0512,  \"JOD\":1.0,  \"GBP\":0.0118913,  \"AED\":0.0545671,  \"JPY\":1.68111,  \"USD\":0.0148559,  \"EUR\":0.0138287  },  \"JPY\":{  \"XAF\":5.39585,  \"KRW\":10.1428,  \"JOD\":1.0,  \"GBP\":0.0070735,  \"AED\":0.032459,  \"INR\":0.594846,  \"USD\":0.00883695,  \"EUR\":0.00822592  },  \"USD\":{  \"XAF\":610.601,  \"KRW\":1147.78,  \"JOD\":1.0,  \"GBP\":0.800446,  \"AED\":3.6731,  \"INR\":67.3135,  \"JPY\":113.161,  \"EUR\":0.930886  },  \"EUR\":{  \"XAF\":655.957,  \"KRW\":1233.03,  \"JOD\":1.0,  \"GBP\":0.860011,  \"AED\":3.94594,  \"INR\":72.3136,  \"JPY\":121.567,  \"USD\":1.07428  } }</p><p>Transaction Requests satisfy PSD2 requirements thus:</p><p>1) A transaction can be initiated by a third party application.</p><p>2) The customer is informed of the charge that will incurred.</p><p>3) The call supports delegated authentication (OAuth)</p><p>See <a href=\"https://github.com/OpenBankProject/Hello-OBP-DirectLogin-Python/blob/master/hello_payments.py\">this python code</a> for a complete example of this flow.</p><p>There is further documentation <a href=\"https://github.com/OpenBankProject/OBP-API/wiki/Transaction-Requests\">here</a></p><p>Authentication is Mandatory</p><p>Special instructions for SEPA:</p><p>When using a SEPA Transaction Request, you specify the IBAN of a Counterparty in the body of the request. The routing details (IBAN) of the counterparty will be forwarded to the core banking system for the transfer.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Transaction Request.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transaction-request-types/:TRANSACTION_REQUEST_TYPE/transaction-requests",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transaction-request-types",
+								":TRANSACTION_REQUEST_TYPE",
+								"transaction-requests"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{TRANSACTION_REQUEST_TYPE}}",
+									"id": "TRANSACTION_REQUEST_TYPE"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Initiate a Payment via creating a Transaction Request.</p><p>In OBP, a <code>transaction request</code> may or may not result in a <code>transaction</code>. However, a <code>transaction</code> only has one possible state: completed.</p><p>A <code>Transaction Request</code> can have one of several states.</p><p><code>Transactions</code> are modeled on items in a bank statement that represent the movement of money.</p><p><code>Transaction Requests</code> are requests to move money which may or may not succeeed and thus result in a <code>Transaction</code>.</p><p>A <code>Transaction Request</code> might create a security challenge that needs to be answered before the <code>Transaction Request</code> proceeds.</p><p>Transaction Requests contain charge information giving the client the opportunity to proceed or not (as long as the challenge level is appropriate).</p><p>Transaction Requests can have one of several Transaction Request Types which expect different bodies. The escaped body is returned in the details key of the GET response. This provides some commonality and one URL for many different payment or transfer types with enough flexibility to validate them differently.</p><p>The payer is set in the URL. Money comes out of the BANK_ID and ACCOUNT_ID specified in the URL.</p><p>The payee is set in the request body. Money goes into the BANK_ID and ACCOUNT_ID specified in the request body.</p><p>In sandbox mode, TRANSACTION_REQUEST_TYPE is commonly set to SANDBOX_TAN. See getTransactionRequestTypesSupportedByBank for all supported types.</p><p>In sandbox mode, if the amount is less than 1000 EUR (any currency, unless it is set differently on this server), the transaction request will create a transaction without a challenge, else the Transaction Request will be set to INITIALISED and a challenge will need to be answered.</p><p>If a challenge is created you must answer it using Answer Transaction Request Challenge before the Transaction is created.</p><p>You can transfer between different currency accounts. (new in 2.0.0). The currency in body must match the sending account.</p><p>The following static FX rates are available in sandbox mode:</p><p>{  \"XAF\":{  \"KRW\":1.87975,  \"JOD\":1.0,  \"GBP\":0.00131092,  \"AED\":0.00601555,  \"INR\":0.110241,  \"JPY\":0.185328,  \"USD\":0.00163773,  \"EUR\":0.00152449  },  \"KRW\":{  \"XAF\":0.531986,  \"JOD\":1.0,  \"GBP\":6.97389E-4,  \"AED\":0.00320019,  \"INR\":0.0586469,  \"JPY\":0.0985917,  \"USD\":8.7125E-4,  \"EUR\":8.11008E-4  },  \"JOD\":{  \"XAF\":1.0,  \"KRW\":1.0,  \"GBP\":1.0,  \"AED\":1.0,  \"INR\":1.0,  \"JPY\":1.0,  \"USD\":1.0,  \"EUR\":1.0  },  \"GBP\":{  \"XAF\":762.826,  \"KRW\":1433.92,  \"JOD\":1.0,  \"AED\":4.58882,  \"INR\":84.095,  \"JPY\":141.373,  \"USD\":1.2493,  \"EUR\":1.16278  },  \"AED\":{  \"XAF\":166.236,  \"KRW\":312.482,  \"GBP\":0.217921,  \"AED\":1.0,  \"INR\":18.3255,  \"JPY\":30.8081,  \"USD\":0.27225,  \"EUR\":0.253425  },  \"INR\":{  \"XAF\":9.07101,  \"KRW\":17.0512,  \"JOD\":1.0,  \"GBP\":0.0118913,  \"AED\":0.0545671,  \"JPY\":1.68111,  \"USD\":0.0148559,  \"EUR\":0.0138287  },  \"JPY\":{  \"XAF\":5.39585,  \"KRW\":10.1428,  \"JOD\":1.0,  \"GBP\":0.0070735,  \"AED\":0.032459,  \"INR\":0.594846,  \"USD\":0.00883695,  \"EUR\":0.00822592  },  \"USD\":{  \"XAF\":610.601,  \"KRW\":1147.78,  \"JOD\":1.0,  \"GBP\":0.800446,  \"AED\":3.6731,  \"INR\":67.3135,  \"JPY\":113.161,  \"EUR\":0.930886  },  \"EUR\":{  \"XAF\":655.957,  \"KRW\":1233.03,  \"JOD\":1.0,  \"GBP\":0.860011,  \"AED\":3.94594,  \"INR\":72.3136,  \"JPY\":121.567,  \"USD\":1.07428  } }</p><p>Transaction Requests satisfy PSD2 requirements thus:</p><p>1) A transaction can be initiated by a third party application.</p><p>2) The customer is informed of the charge that will incurred.</p><p>3) The call supports delegated authentication (OAuth)</p><p>See <a href=\"https://github.com/OpenBankProject/Hello-OBP-DirectLogin-Python/blob/master/hello_payments.py\">this python code</a> for a complete example of this flow.</p><p>There is further documentation <a href=\"https://github.com/OpenBankProject/OBP-API/wiki/Transaction-Requests\">here</a></p><p>Authentication is Mandatory</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Answer Transaction Request Challenge.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transaction-request-types/:TRANSACTION_REQUEST_TYPE/transaction-requests/:TRANSACTION_REQUEST_ID/challenge",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transaction-request-types",
+								":TRANSACTION_REQUEST_TYPE",
+								"transaction-requests",
+								":TRANSACTION_REQUEST_ID",
+								"challenge"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{TRANSACTION_REQUEST_ID}}",
+									"id": "TRANSACTION_REQUEST_ID"
+								},
+								{
+									"value": "{{TRANSACTION_REQUEST_TYPE}}",
+									"id": "TRANSACTION_REQUEST_TYPE"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>In Sandbox mode, any string that can be converted to a positive integer will be accepted as an answer.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transaction Requests.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transaction-requests",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transaction-requests"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns transaction requests for account specified by ACCOUNT_ID at bank specified by BANK_ID.</p><p>The VIEW_ID specified must be 'owner' and the user must have access to this view.</p><p>Version 2.0.0 now returns charge information.</p><p>Transaction Requests serve to initiate transactions that may or may not proceed. They contain information including:</p><ul>  <li>Transaction Request Id</li>  <li>Type</li>  <li>Status (INITIATED, COMPLETED)</li>  <li>Challenge (in order to confirm the request)</li>  <li>From Bank / Account</li>  <li>Details including Currency, Value, Description and other initiation information specific to each type. (Could potentialy include a list of future transactions.)</li>  <li>Related Transactions</li></ul><p>PSD2 Context: PSD2 requires transparency of charges to the customer. This endpoint provides the charge that would be applied if the Transaction Request proceeds - and a record of that charge there after. The customer can proceed with the Transaction by answering the security challenge.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transactions for Account (Full)",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transactions",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transactions"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns transactions list of the account specified by ACCOUNT_ID and <a href=\"#1_2_1-getViewsForBankAccount\">moderated</a> by the view (VIEW_ID).</p><p>Authentication via OAuth is required if the view is not public.</p><p>Possible custom headers for pagination:</p><ul>  <li>obp_sort_by=CRITERIA ==&gt; default value: \"completed\" field</li>  <li>obp_sort_direction=ASC/DESC ==&gt; default value: DESC</li>  <li>obp_limit=NUMBER ==&gt; default value: 50</li>  <li>obp_offset=NUMBER ==&gt; default value: 0</li>  <li>obp_from_date=DATE =&gt; default value: date of the oldest transaction registered (format below)</li>  <li>obp_to_date=DATE =&gt; default value: date of the newest transaction registered (format below)</li></ul><p><strong>Date format parameter</strong>: \"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\" (2014-07-01T00:00:00.000Z) ==&gt; time zone is UTC.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get comments.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transactions/:TRANSACTION_ID/metadata/comments",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transactions",
+								":TRANSACTION_ID",
+								"metadata",
+								"comments"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{TRANSACTION_ID}}",
+									"id": "TRANSACTION_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns the transaction TRANSACTION_ID comments made on a <a href=\"#1_2_1-getViewsForBankAccount\">view</a> (VIEW_ID).</p><p>Authentication via OAuth is required if the view is not public.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Add comment.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transactions/:TRANSACTION_ID/metadata/comments",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transactions",
+								":TRANSACTION_ID",
+								"metadata",
+								"comments"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{TRANSACTION_ID}}",
+									"id": "TRANSACTION_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Posts a comment about a transaction TRANSACTION_ID on a <a href=\"#1_2_1-getViewsForBankAccount\">view</a> VIEW_ID.</p><p>${authenticationRequiredMessage(false)}</p><p>Authentication is required since the comment is linked with the user.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete comment.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transactions/:TRANSACTION_ID/metadata/comments/:COMMENT_ID",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transactions",
+								":TRANSACTION_ID",
+								"metadata",
+								"comments",
+								":COMMENT_ID"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{COMMENT_ID}}",
+									"id": "COMMENT_ID"
+								},
+								{
+									"value": "{{TRANSACTION_ID}}",
+									"id": "TRANSACTION_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "<p>Delete the comment COMMENT_ID about the transaction TRANSACTION_ID made on <a href=\"#1_2_1-getViewsForBankAccount\">view</a>.</p><p>Authentication via OAuth is required. The user must either have owner privileges for this account, or must be the user that posted the comment.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get images.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transactions/:TRANSACTION_ID/metadata/images",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transactions",
+								":TRANSACTION_ID",
+								"metadata",
+								"images"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{TRANSACTION_ID}}",
+									"id": "TRANSACTION_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns the transaction TRANSACTION_ID images made on a <a href=\"#1_2_1-getViewsForBankAccount\">view</a> (VIEW_ID).  Authentication via OAuth is required if the view is not public.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Add an image.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transactions/:TRANSACTION_ID/metadata/images",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transactions",
+								":TRANSACTION_ID",
+								"metadata",
+								"images"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{TRANSACTION_ID}}",
+									"id": "TRANSACTION_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Posts an image about a transaction TRANSACTION_ID on a <a href=\"#1_2_1-getViewsForBankAccount\">view</a> VIEW_ID.</p><p>Authentication is Mandatory</p><p>The image is linked with the user.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an image",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transactions/:TRANSACTION_ID/metadata/images/:IMAGE_ID",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transactions",
+								":TRANSACTION_ID",
+								"metadata",
+								"images",
+								":IMAGE_ID"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{IMAGE_ID}}",
+									"id": "IMAGE_ID"
+								},
+								{
+									"value": "{{TRANSACTION_ID}}",
+									"id": "TRANSACTION_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "<p>Deletes the image IMAGE_ID about the transaction TRANSACTION_ID made on <a href=\"#1_2_1-getViewsForBankAccount\">view</a>.</p><p>Authentication via OAuth is required. The user must either have owner privileges for this account, or must be the user that posted the image.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get narrative.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transactions/:TRANSACTION_ID/metadata/narrative",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transactions",
+								":TRANSACTION_ID",
+								"metadata",
+								"narrative"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{TRANSACTION_ID}}",
+									"id": "TRANSACTION_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns the account owner description of the transaction <a href=\"#1_2_1-getViewsForBankAccount\">moderated</a> by the view.</p><p>Authentication via OAuth is required if the view is not public.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Update narrative.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transactions/:TRANSACTION_ID/metadata/narrative",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transactions",
+								":TRANSACTION_ID",
+								"metadata",
+								"narrative"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{TRANSACTION_ID}}",
+									"id": "TRANSACTION_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Updates the description of the transaction TRANSACTION_ID.</p><p>Authentication via OAuth is required if the view is not public.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Add narrative.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transactions/:TRANSACTION_ID/metadata/narrative",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transactions",
+								":TRANSACTION_ID",
+								"metadata",
+								"narrative"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{TRANSACTION_ID}}",
+									"id": "TRANSACTION_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Creates a description of the transaction TRANSACTION_ID.</p><p>Note: Unlike other items of metadata, there is only one \"narrative\" per transaction accross all views. If you set narrative via a view e.g. view-x it will be seen via view-y (as long as view-y has permission to see the narrative).</p><p>Authentication is Optional Authentication is required if the view is not public.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete narrative.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transactions/:TRANSACTION_ID/metadata/narrative",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transactions",
+								":TRANSACTION_ID",
+								"metadata",
+								"narrative"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{TRANSACTION_ID}}",
+									"id": "TRANSACTION_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "<p>Deletes the description of the transaction TRANSACTION_ID.</p><p>Authentication via OAuth is required if the view is not public.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get tags.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transactions/:TRANSACTION_ID/metadata/tags",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transactions",
+								":TRANSACTION_ID",
+								"metadata",
+								"tags"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{TRANSACTION_ID}}",
+									"id": "TRANSACTION_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns the transaction TRANSACTION_ID tags made on a <a href=\"#1_2_1-getViewsForBankAccount\">view</a> (VIEW_ID).  Authentication via OAuth is required if the view is not public.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Add a tag.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transactions/:TRANSACTION_ID/metadata/tags",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transactions",
+								":TRANSACTION_ID",
+								"metadata",
+								"tags"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{TRANSACTION_ID}}",
+									"id": "TRANSACTION_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Posts a tag about a transaction TRANSACTION_ID on a <a href=\"#1_2_1-getViewsForBankAccount\">view</a> VIEW_ID.</p><p>Authentication is Mandatory</p><p>Authentication is required as the tag is linked with the user.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a tag.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transactions/:TRANSACTION_ID/metadata/tags/:TAG_ID",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transactions",
+								":TRANSACTION_ID",
+								"metadata",
+								"tags",
+								":TAG_ID"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{TAG_ID}}",
+									"id": "TAG_ID"
+								},
+								{
+									"value": "{{TRANSACTION_ID}}",
+									"id": "TRANSACTION_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "<p>Deletes the tag TAG_ID about the transaction TRANSACTION_ID made on <a href=\"#1_2_1-getViewsForBankAccount\">view</a>.</p><p>Authentication via OAuth is required. The user must either have owner privileges for this account, or must be the user that posted the tag.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get where tag.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transactions/:TRANSACTION_ID/metadata/where",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transactions",
+								":TRANSACTION_ID",
+								"metadata",
+								"where"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{TRANSACTION_ID}}",
+									"id": "TRANSACTION_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns the \"where\" Geo tag added to the transaction TRANSACTION_ID made on a <a href=\"#1_2_1-getViewsForBankAccount\">view</a> (VIEW_ID). It represents the location where the transaction has been initiated.</p><p>Authentication via OAuth is required if the view is not public.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Update where tag.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transactions/:TRANSACTION_ID/metadata/where",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transactions",
+								":TRANSACTION_ID",
+								"metadata",
+								"where"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{TRANSACTION_ID}}",
+									"id": "TRANSACTION_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Updates the \"where\" Geo tag on a transaction TRANSACTION_ID in a <a href=\"#1_2_1-getViewsForBankAccount\">view</a>.</p><p>Authentication is Mandatory</p><p>The geo tag is linked with the user.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Add where tag.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transactions/:TRANSACTION_ID/metadata/where",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transactions",
+								":TRANSACTION_ID",
+								"metadata",
+								"where"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{TRANSACTION_ID}}",
+									"id": "TRANSACTION_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Creates a \"where\" Geo tag on a transaction TRANSACTION_ID in a <a href=\"#1_2_1-getViewsForBankAccount\">view</a>.</p><p>Authentication is Mandatory</p><p>The geo tag is linked with the user.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete where tag.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transactions/:TRANSACTION_ID/metadata/where",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transactions",
+								":TRANSACTION_ID",
+								"metadata",
+								"where"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{TRANSACTION_ID}}",
+									"id": "TRANSACTION_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "<p>Deletes the where tag of the transaction TRANSACTION_ID made on <a href=\"#1_2_1-getViewsForBankAccount\">view</a>.</p><p>Authentication is Mandatory</p><p>The user must either have owner privileges for this account, or must be the user that posted the geo tag.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Other Account of Transaction",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transactions/:TRANSACTION_ID/other_account",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transactions",
+								":TRANSACTION_ID",
+								"other_account"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{TRANSACTION_ID}}",
+									"id": "TRANSACTION_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get other account of a transaction. Returns details of the other party involved in the transaction, moderated by the <a href=\"#1_2_1-getViewsForBankAccount\">view</a> (VIEW_ID).  Authentication via OAuth is required if the view is not public.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transaction by Id.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/:VIEW_ID/transactions/:TRANSACTION_ID/transaction",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								":VIEW_ID",
+								"transactions",
+								":TRANSACTION_ID",
+								"transaction"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{TRANSACTION_ID}}",
+									"id": "TRANSACTION_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns one transaction specified by TRANSACTION_ID of the account ACCOUNT_ID and <a href=\"#1_2_1-getViewsForBankAccount\">moderated</a> by the view (VIEW_ID).</p><p>Authentication is Optional Authentication is required if the view is not public.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get access.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/permissions",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								"permissions"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns the list of the permissions at BANK_ID for account ACCOUNT_ID, with each time a pair composed of the user and the views that he has access to.</p><p>OAuth authentication is required and the user needs to have access to the owner view.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get access for specific user.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/permissions/:PROVIDER_ID/:USER_ID",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								"permissions",
+								":PROVIDER_ID",
+								":USER_ID"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{PROVIDER_ID}}",
+									"id": "PROVIDER_ID"
+								},
+								{
+									"value": "{{USER_ID}}",
+									"id": "USER_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns the list of the views at BANK_ID for account ACCOUNT_ID that a USER_ID at their provider PROVIDER_ID has access to. All url parameters must be <a href=\"http://en.wikipedia.org/wiki/Percent-encoding\">%-encoded</a>, which is often especially relevant for USER_ID and PROVIDER_ID.</p><p>OAuth authentication is required and the user needs to have access to the owner view.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Grant User access to a list of views.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/permissions/:PROVIDER_ID/:USER_ID/views",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								"permissions",
+								":PROVIDER_ID",
+								":USER_ID",
+								"views"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{PROVIDER_ID}}",
+									"id": "PROVIDER_ID"
+								},
+								{
+									"value": "{{USER_ID}}",
+									"id": "USER_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Grants the user USER_ID at their provider PROVIDER_ID access to a list of views at BANK_ID for account ACCOUNT_ID.</p><p>All url parameters must be <a href=\"http://en.wikipedia.org/wiki/Percent-encoding\">%-encoded</a>, which is often especially relevant for USER_ID and PROVIDER_ID.</p><p>OAuth authentication is required and the user needs to have access to the owner view.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Revoke access to all Views on Account",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/permissions/:PROVIDER_ID/:USER_ID/views",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								"permissions",
+								":PROVIDER_ID",
+								":USER_ID",
+								"views"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{PROVIDER_ID}}",
+									"id": "PROVIDER_ID"
+								},
+								{
+									"value": "{{USER_ID}}",
+									"id": "USER_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "<p>Revokes the user USER_ID at their provider PROVIDER_ID access to all the views at BANK_ID for account ACCOUNT_ID.</p><p>OAuth authentication is required and the user needs to have access to the owner view.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Grant User access to View.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/permissions/:PROVIDER_ID/:USER_ID/views/:VIEW_ID",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								"permissions",
+								":PROVIDER_ID",
+								":USER_ID",
+								"views",
+								":VIEW_ID"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{PROVIDER_ID}}",
+									"id": "PROVIDER_ID"
+								},
+								{
+									"value": "{{USER_ID}}",
+									"id": "USER_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Grants the user USER_ID at their provider PROVIDER_ID access to the view VIEW_ID at BANK_ID for account ACCOUNT_ID. All url parameters must be <a href=\"http://en.wikipedia.org/wiki/Percent-encoding\">%-encoded</a>, which is often especially relevant for USER_ID and PROVIDER_ID.</p><p>OAuth authentication is required and the user needs to have access to the owner view.</p><p>Granting access to a public view will return an error message, as the user already has access.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Revoke access to one View.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/permissions/:PROVIDER_ID/:USER_ID/views/:VIEW_ID",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								"permissions",
+								":PROVIDER_ID",
+								":USER_ID",
+								"views",
+								":VIEW_ID"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{PROVIDER_ID}}",
+									"id": "PROVIDER_ID"
+								},
+								{
+									"value": "{{USER_ID}}",
+									"id": "USER_ID"
+								},
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "<p>Revokes the user USER_ID at their provider PROVIDER_ID access to the view VIEW_ID at BANK_ID for account ACCOUNT_ID.</p><p>Revoking a user access to a public view will return an error message.</p><p>OAuth authentication is required and the user needs to have access to the owner view.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Views for Account.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/views",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								"views"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<h1>Views</h1><p>Views in Open Bank Project provide a mechanism for fine grained access control and delegation to Accounts and Transactions. Account holders use the 'owner' view by default. Delegated access is made through other views for example 'accountants', 'share-holders' or 'tagging-application'. Views can be created via the API and each view has a list of entitlements.</p><p>Views on accounts and transactions filter the underlying data to redact certain fields for certain users. For instance the balance on an account may be hidden from the public. The way to know what is possible on a view is determined in the following JSON.</p><p><strong>Data:</strong> When a view moderates a set of data, some fields my contain the value <code>null</code> rather than the original value. This indicates either that the user is not allowed to see the original data or the field is empty.</p><p>There is currently one exception to this rule; the 'holder' field in the JSON contains always a value which is either an alias or the real name - indicated by the 'is_alias' field.</p><p><strong>Action:</strong> When a user performs an action like trying to post a comment (with POST API call), if he is not allowed, the body response will contain an error message.</p><p><strong>Metadata:</strong> Transaction metadata (like images, tags, comments, etc.) will appears <em>ONLY</em> on the view where they have been created e.g. comments posted to the public view only appear on the public view.</p><p>The other account metadata fields (like image_URL, more_info, etc.) are unique through all the views. Example, if a user edits the 'more_info' field in the 'team' view, then the view 'authorities' will show the new value (if it is allowed to do it).</p><h1>All</h1><p><em>Optional</em></p><p>Returns the list of the views created for account ACCOUNT_ID at BANK_ID.</p><p>OAuth authentication is required and the user needs to have access to the owner view.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Create View.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/views",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								"views"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Create a view on bank account</p><p>OAuth authentication is required and the user needs to have access to the owner view.  The 'alias' field in the JSON can take one of three values:</p><ul>  <li><em>public</em>: to use the public alias if there is one specified for the other account.</li>  <li><em>private</em>: to use the public alias if there is one specified for the other account.</li>  <li>  <p><em>''(empty string)</em>: to use no alias; the view shows the real name of the other account.</p></li></ul><p>The 'hide_metadata_if_alias_used' field in the JSON can take boolean values. If it is set to <code>true</code> and there is an alias on the other account then the other accounts' metadata (like more_info, url, image_url, open_corporates_url, etc.) will be hidden. Otherwise the metadata will be shown.</p><p>The 'allowed_actions' field is a list containing the name of the actions allowed on this view, all the actions contained will be set to <code>true</code> on the view creation, the rest will be set to <code>false</code>.</p><p>You should use a leading _ (underscore) for the view name because other view names may become reserved by OBP internally</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Update View.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/views/:VIEW_ID",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								"views",
+								":VIEW_ID"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Update an existing view on a bank account</p><p>OAuth authentication is required and the user needs to have access to the owner view.</p><p>The json sent is the same as during view creation (above), with one difference: the 'name' field of a view is not editable (it is only set when a view is created)</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete View",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/:ACCOUNT_ID/views/:VIEW_ID",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								"views",
+								":VIEW_ID"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{VIEW_ID}}",
+									"id": "VIEW_ID"
+								},
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "<p>Deletes the view specified by VIEW_ID on the bank account specified by ACCOUNT_ID at bank BANK_ID.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get private accounts at one bank (Authenticated access).",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/private",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								"private"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns the list of private (non-public) accounts at BANK_ID that the user has access to. For each account the API returns the ID and the available views.</p><p>If you want to see more information on the Views, use the Account Detail call. If you want less information about the account, use the /my accounts call</p><p>Authentication is Mandatory</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Accounts at Bank (Public)",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/accounts/public",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								"public"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns a list of the public accounts (Anonymous access) at BANK_ID. For each account the API returns the ID and the available views.</p><p>Authentication via OAuth is not required.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Bank ATMS",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/atms",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"atms"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns information about ATMs for a single bank specified by BANK_ID including:</p><ul>  <li>Address</li>  <li>Geo Location</li>  <li>License the data under this endpoint is released under</li></ul><p>Authentication is Optional</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Bank ATM",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/atms/ATM_ID",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"atms",
+								"ATM_ID"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns information about ATM for a single bank specified by BANK_ID and ATM_ID including:</p><ul>  <li>Address</li>  <li>Geo Location</li>  <li>License the data under this endpoint is released under</li></ul><p>Authentication is Optional</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Bank Branches",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/branches",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"branches"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns information about branches for a single bank specified by BANK_ID including:</p><ul>  <li>Name</li>  <li>Address</li>  <li>Geo Location</li>  <li>License the data under this endpoint is released under</li></ul><p>Authentication is Optional</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Branch",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/branches",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"branches"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Create branch for the bank (Authenticated access). Authentication is Mandatory</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Bank Branch",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/branches/:BRANCH_ID",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"branches",
+								":BRANCH_ID"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BRANCH_ID}}",
+									"id": "BRANCH_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns information about branches for a single bank specified by BANK_ID and BRANCH_ID including:  meta.license.id and eta.license.name fields must not be empty. </p><ul>  <li>Name</li>  <li>Address</li>  <li>Geo Location</li>  <li>License the data under this endpoint is released under</li></ul><p>Authentication is Optional</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Branch",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/branches/:BRANCH_ID",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"branches",
+								":BRANCH_ID"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BRANCH_ID}}",
+									"id": "BRANCH_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Update an existing branch for a bank account (Authenticated access). Authentication is Mandatory</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get cards for the specified bank",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/cards",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"cards"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Add cards for a bank",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/cards",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"cards"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Import bulk data into the sandbox (Authenticated access).</p><p>This is can be used to create cards which are stored in the local RDBMS. Authentication is Mandatory</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get CRM Events for the logged in user",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/crm-events",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"crm-events"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get customer for logged in user",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/customer",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"customer"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Information about the currently authenticated user.</p><p>Authentication via OAuth is required.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Customer Message.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/customer/:CUSTOMER_ID/messages",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"customer",
+								":CUSTOMER_ID",
+								"messages"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{CUSTOMER_ID}}",
+									"id": "CUSTOMER_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Add a message for the customer specified by CUSTOMER_ID</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer Messages (current)",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/customer/messages",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"customer",
+								"messages"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get messages for the logged in customer Messages sent to the currently authenticated user.</p><p>Authentication via OAuth is required.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Customer.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/customers",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"customers"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Add a customer linked to the user specified by user_id The Customer resource stores the customer number, legal name, email, phone number, their date of birth, relationship status, education attained, a url for a profile image, KYC status etc. This call may require additional permissions/role in the future. For now the authenticated user can create at most one linked customer. Dates need to be in the format 2013-01-21T23:08:00Z Authentication is Mandatory</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Add KYC Check",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/customers/:CUSTOMER_ID/kyc_check/:KYC_CHECK_ID",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"customers",
+								":CUSTOMER_ID",
+								"kyc_check",
+								":KYC_CHECK_ID"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{KYC_CHECK_ID}}",
+									"id": "KYC_CHECK_ID"
+								},
+								{
+									"value": "{{CUSTOMER_ID}}",
+									"id": "CUSTOMER_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Add a KYC check for the customer specified by CUSTOMER_ID. KYC Checks store details of checks on a customer made by the KYC team, their comments and a satisfied status.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Add KYC Document.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/customers/:CUSTOMER_ID/kyc_documents/:KYC_DOCUMENT_ID",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"customers",
+								":CUSTOMER_ID",
+								"kyc_documents",
+								":KYC_DOCUMENT_ID"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{KYC_DOCUMENT_ID}}",
+									"id": "KYC_DOCUMENT_ID"
+								},
+								{
+									"value": "{{CUSTOMER_ID}}",
+									"id": "CUSTOMER_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Add a KYC document for the customer specified by CUSTOMER_ID. KYC Documents contain the document type (e.g. passport), place of issue, expiry etc. </p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Add KYC Media.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/customers/:CUSTOMER_ID/kyc_media/:KYC_MEDIA_ID",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"customers",
+								":CUSTOMER_ID",
+								"kyc_media",
+								":KYC_MEDIA_ID"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{KYC_MEDIA_ID}}",
+									"id": "KYC_MEDIA_ID"
+								},
+								{
+									"value": "{{CUSTOMER_ID}}",
+									"id": "CUSTOMER_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Add some KYC media for the customer specified by CUSTOMER_ID. KYC Media resources relate to KYC Documents and KYC Checks and contain media urls for scans of passports, utility bills etc.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Add KYC Status",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/customers/:CUSTOMER_ID/kyc_statuses",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"customers",
+								":CUSTOMER_ID",
+								"kyc_statuses"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{CUSTOMER_ID}}",
+									"id": "CUSTOMER_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Add a kyc_status for the customer specified by CUSTOMER_ID. KYC Status is a timeline of the KYC status of the customer</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get social media handles for a customer",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/customers/:CUSTOMER_ID/social_media_handles",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"customers",
+								":CUSTOMER_ID",
+								"social_media_handles"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{CUSTOMER_ID}}",
+									"id": "CUSTOMER_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get social media handles for a customer.</p><p>Authentication is Mandatory</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Social Media Handle",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/customers/:CUSTOMER_ID/social_media_handles",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"customers",
+								":CUSTOMER_ID",
+								"social_media_handles"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{CUSTOMER_ID}}",
+									"id": "CUSTOMER_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Add a social media handle for the customer specified by CUSTOMER_ID.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Meetings",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/meetings",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"meetings"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Meetings contain meta data about, and are used to facilitate, video conferences / chats etc.</p><p>The actual conference/chats are handled by external services.</p><p>Login is required.</p><p>This call is <strong>experimental</strong> and will require further authorisation in the future.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Meeting (video conference/call)",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/meetings",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"meetings"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Create Meeting: Initiate a video conference/call with the bank.</p><p>The Meetings resource contains meta data about video/other conference sessions, not the video/audio/chat itself.</p><p>The actual conferencing is handled by external providers. Currently OBP supports tokbox video conferences (WIP).</p><p>This is not a recomendation of tokbox per se.</p><p>provider_id determines the provider of the meeting / video chat service. MUST be url friendly (no spaces).</p><p>purpose_id explains the purpose of the chat. onboarding | mortgage | complaint etc. MUST be url friendly (no spaces).</p><p>Login is required.</p><p>This call is <strong>experimental</strong>. Currently staff_user_id is not set. Further calls will be needed to correctly set this.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Meeting",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/meetings/MEETING_ID",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"meetings",
+								"MEETING_ID"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get Meeting specified by BANK_ID / MEETING_ID Meetings contain meta data about, and are used to facilitate, video conferences / chats etc.</p><p>The actual conference/chats are handled by external services.</p><p>Login is required.</p><p>This call is <strong>experimental</strong> and will require further authorisation in the future.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Bank Products",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/products",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"products"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns information about the financial products offered by a bank specified by BANK_ID including:</p><ul>  <li>Name</li>  <li>Code</li>  <li>Category</li>  <li>Family</li>  <li>Super Family</li>  <li>More info URL</li>  <li>Description</li>  <li>Terms and Conditions</li>  <li>License the data under this endpoint is released under Authentication is Optional</li></ul>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Bank Product",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/products/PRODUCT_CODE",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"products",
+								"PRODUCT_CODE"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns information about the financial products offered by a bank specified by BANK_ID and PRODUCT_CODE including:</p><ul>  <li>Name</li>  <li>Code</li>  <li>Category</li>  <li>Family</li>  <li>Super Family</li>  <li>More info URL</li>  <li>Description</li>  <li>Terms and Conditions</li>  <li>License the data under this endpoint is released under Authentication is Optional</li></ul>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get the Transaction Request Types supported by the bank",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/transaction-request-types",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"transaction-request-types"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get the list of the Transaction Request Types supported by the bank.</p><p>Authentication is Optional</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transaction Types offered by the bank",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/transaction-types",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"transaction-types"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get Transaction Types for the bank specified by BANK_ID:</p><p>Lists the possible Transaction Types available at the bank (as opposed to Transaction Request Types which are the possible ways Transactions can be created by this API Server).</p><ul>  <li>id : Unique transaction type id across the API instance. SHOULD be a UUID. MUST be unique.</li>  <li>bank_id : The bank that supports this TransactionType</li>  <li>short_code : A short code (SHOULD have no-spaces) which MUST be unique across the bank. May be stored with Transactions to link here</li>  <li>summary : A succinct summary</li>  <li>description : A longer description</li>  <li>charge : The charge to the customer for each one of these</li></ul><p>Authentication is Optional</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Transaction Type offered by the bank",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/transaction-types",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"transaction-types"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Create Transaction Types for the bank specified by BANK_ID:</p><ul>  <li>id : Unique transaction type id across the API instance. SHOULD be a UUID. MUST be unique.</li>  <li>bank_id : The bank that supports this TransactionType</li>  <li>short_code : A short code (SHOULD have no-spaces) which MUST be unique across the bank. May be stored with Transactions to link here</li>  <li>summary : A succinct summary</li>  <li>description : A longer description</li>  <li>charge : The charge to the customer for each one of these</li></ul><p>Authentication is Mandatory</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Create user customer link.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/user_customer_links",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"user_customer_links"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Link a customer and a user This call may require additional permissions/role in the future. For now the authenticated user can create at most one linked customer at any one bank. Authentication is Mandatory</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Entitlements specified by BANK_ID and USER_ID",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/banks/:BANK_ID/users/:USER_ID/entitlements",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"banks",
+								":BANK_ID",
+								"users",
+								":USER_ID",
+								"entitlements"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{USER_ID}}",
+									"id": "USER_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Login is required.</p>"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cards",
+			"description": "Folder for cards",
+			"item": [
+				{
+					"name": "Get cards for the current user",
+					"request": {
+						"url": "https://apisandbox.openbankproject.com/obp/v3.0.0/cards",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns data about all the physical cards a user has been issued. These could be debit cards, credit cards, etc.</p>"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "config",
+			"description": "Folder for config",
+			"item": [
+				{
+					"name": "The configuration of the API",
+					"request": {
+						"url": "https://apisandbox.openbankproject.com/obp/v3.0.0/config",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns information about:</p><ul>  <li>Akka ports</li>  <li>Elastic search ports</li>  <li>Cached function</li></ul>"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "customers",
+			"description": "Folder for customers",
+			"item": [
+				{
+					"name": "Get KYC Checks for current Customer",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/customers/:CUSTOMER_ID/kyc_checks",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"customers",
+								":CUSTOMER_ID",
+								"kyc_checks"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{CUSTOMER_ID}}",
+									"id": "CUSTOMER_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get KYC checks for the logged in customer Messages sent to the currently authenticated user.</p><p>Authentication is Mandatory</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get KYC Documents for Customer",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/customers/:CUSTOMER_ID/kyc_documents",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"customers",
+								":CUSTOMER_ID",
+								"kyc_documents"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{CUSTOMER_ID}}",
+									"id": "CUSTOMER_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get KYC (know your customer) documents for a customer Get a list of documents that affirm the identity of the customer Passport, driving licence etc. Authentication is Optional</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get KYC Media for a customer",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/customers/:CUSTOMER_ID/kyc_media",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"customers",
+								":CUSTOMER_ID",
+								"kyc_media"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{CUSTOMER_ID}}",
+									"id": "CUSTOMER_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get KYC media (scans, pictures, videos) that affirms the identity of the customer.</p><p>Authentication is Mandatory</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get the KYC statuses for a customer",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/customers/:CUSTOMER_ID/kyc_statuses",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"customers",
+								":CUSTOMER_ID",
+								"kyc_statuses"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{CUSTOMER_ID}}",
+									"id": "CUSTOMER_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get the KYC statuses for a customer over time</p><p>Authentication is Mandatory</p>"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "entitlements",
+			"description": "Folder for entitlements",
+			"item": [
+				{
+					"name": "Get all Entitlements",
+					"request": {
+						"url": "https://apisandbox.openbankproject.com/obp/v3.0.0/entitlements",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Login is required.</p>"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "fx",
+			"description": "Folder for fx",
+			"item": [
+				{
+					"name": "Get Current FxRate",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/fx/:FROM_CURRENCY_CODE/:TO_CURRENCY_CODE",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"fx",
+								":FROM_CURRENCY_CODE",
+								":TO_CURRENCY_CODE"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{TO_CURRENCY_CODE}}",
+									"id": "TO_CURRENCY_CODE"
+								},
+								{
+									"value": "{{FROM_CURRENCY_CODE}}",
+									"id": "FROM_CURRENCY_CODE"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get the latest FXRate specified by FROM_CURRENCY_CODE and TO_CURRENCY_CODE </p>"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "management",
+			"description": "Folder for management",
+			"item": [
+				{
+					"name": "Get Connector Metrics",
+					"request": {
+						"url": "https://apisandbox.openbankproject.com/obp/v3.0.0/management/connector/metrics",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get the all metrics</p><p>require $CanGetConnectorMetrics role</p><p>Filters Part 1.*filtering* (no wilde cards etc.) parameters to GET /management/connector/metrics</p><p>Should be able to filter on the following metrics fields</p><p>eg: /management/connector/metrics?start_date=2017-03-01&amp;end_date=2017-03-04&amp;limit=50&amp;offset=2</p><p>1 start_date (defaults to one week before current date): eg:start_date=2017-03-01</p><p>2 end_date (defaults to current date) eg:end_date=2017-03-05</p><p>3 limit (for pagination: defaults to 200) eg:limit=200</p><p>4 offset (for pagination: zero index, defaults to 0) eg: offset=10</p><p>eg: /management/connector/metrics?start_date=2016-03-05&amp;end_date=2017-03-08&amp;limit=10000&amp;offset=0&amp;anon=false&amp;app_name=hognwei&amp;implemented_in_version=v2.1.0&amp;verb=POST&amp;user_id=c7b6cb47-cb96-4441-8801-35b57456753a&amp;user_name=susan.uk.29@example.com&amp;consumer_id=78</p><p>Other filters:</p><p>5 connector_name (if null ignore)</p><p>6 function_name (if null ignore)</p><p>7 obp_api_request_id (if null ignore)</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Consumers",
+					"request": {
+						"url": "https://apisandbox.openbankproject.com/obp/v3.0.0/management/consumers",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get the all Consumers.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Consumer",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/management/consumers/:CONSUMER_ID",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"management",
+								"consumers",
+								":CONSUMER_ID"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{CONSUMER_ID}}",
+									"id": "CONSUMER_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get the Consumer specified by CONSUMER_ID.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Enable or Disable Consumers",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/management/consumers/:CONSUMER_ID",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"management",
+								"consumers",
+								":CONSUMER_ID"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{CONSUMER_ID}}",
+									"id": "CONSUMER_ID"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Enable/Disable a Consumer specified by CONSUMER_ID.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Consumer RedirectUrl",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/management/consumers/:CONSUMER_ID/consumer/redirect_url",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"management",
+								"consumers",
+								":CONSUMER_ID",
+								"consumer",
+								"redirect_url"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{CONSUMER_ID}}",
+									"id": "CONSUMER_ID"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Update an existing redirectUrl for a Consumer specified by CONSUMER_ID.</p><p>CONSUMER_ID can be obtained after you register the application. </p><p>Or use the endpoint 'Get Consumers' to get it </p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Metrics",
+					"request": {
+						"url": "https://apisandbox.openbankproject.com/obp/v3.0.0/management/metrics",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get the all metrics</p><p>require CanReadMetrics role</p><p>Filters Part 1.*filtering* (no wilde cards etc.) parameters to GET /management/metrics</p><p>Should be able to filter on the following metrics fields</p><p>eg: /management/metrics?start_date=2017-03-01&amp;end_date=2017-03-04&amp;limit=50&amp;offset=2</p><p>1 start_date (defaults to one week before current date): eg:start_date=2017-03-01</p><p>2 end_date (defaults to current date) eg:end_date=2017-03-05</p><p>3 limit (for pagination: defaults to 200) eg:limit=200</p><p>4 offset (for pagination: zero index, defaults to 0) eg: offset=10</p><p>eg: /management/metrics?start_date=2016-03-05&amp;end_date=2017-03-08&amp;limit=10000&amp;offset=0&amp;anon=false&amp;app_name=hognwei&amp;implemented_in_version=v2.1.0&amp;verb=POST&amp;user_id=c7b6cb47-cb96-4441-8801-35b57456753a&amp;user_name=susan.uk.29@example.com&amp;consumer_id=78</p><p>Other filters:</p><p>5 consumer_id (if null ignore)</p><p>6 user_id (if null ignore)</p><p>7 anon (if null ignore) only support two value : true (return where user_id is null.) or false (return where user_id is not null.)</p><p>8 url (if null ignore), note: can not contain '&amp;'. </p><p>9 app_name (if null ignore)</p><p>10 implemented_by_partial_function (if null ignore),</p><p>11 implemented_in_version (if null ignore)</p><p>12 verb (if null ignore)</p>"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "message-docs",
+			"description": "Folder for message-docs",
+			"item": [
+				{
+					"name": "Get Message Docs",
+					"request": {
+						"url": "https://apisandbox.openbankproject.com/obp/v3.0.0/message-docs/mar2017",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>These message docs provide example messages sent by OBP to the (Kafka) message queue for processing by the Core Banking / Payment system Adapter - together with an example expected response and possible error codes.  Integrators can use these messages to build Adapters that provide core banking services to OBP.  Note: To enable Kafka connector and this message format, you must set conenctor=kafka_vMar2017 in your Props</p>"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "my",
+			"description": "Folder for my",
+			"item": [
+				{
+					"name": "Get Accounts at all Banks (Private)",
+					"request": {
+						"url": "https://apisandbox.openbankproject.com/obp/v3.0.0/my/accounts",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get private accounts at all banks (Authenticated access) Returns the list of accounts containing private views for the user at all banks. For each account the API returns the ID and the available views.</p><p>Authentication is Mandatory</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Account by Id (Core)",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/my/banks/:BANK_ID/accounts/:ACCOUNT_ID/account",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"my",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								"account"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Information returned about the account specified by ACCOUNT_ID:</p><ul>  <li>Number</li>  <li>Owners</li>  <li>Type</li>  <li>Balance</li>  <li>IBAN</li></ul><p>This call returns the owner view and requires access to that view.</p><p>OAuth authentication is required</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transactions for Account (Core)",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/my/banks/:BANK_ID/accounts/:ACCOUNT_ID/transactions",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"my",
+								"banks",
+								":BANK_ID",
+								"accounts",
+								":ACCOUNT_ID",
+								"transactions"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{ACCOUNT_ID}}",
+									"id": "ACCOUNT_ID"
+								},
+								{
+									"value": "{{BANK_ID}}",
+									"id": "BANK_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns transactions list (Core info) of the account specified by ACCOUNT_ID.</p><p>Authentication is required.</p><p>Possible custom headers for pagination:</p><ul>  <li>obp_sort_by=CRITERIA ==&gt; default value: \"completed\" field</li>  <li>obp_sort_direction=ASC/DESC ==&gt; default value: DESC</li>  <li>obp_limit=NUMBER ==&gt; default value: 50</li>  <li>obp_offset=NUMBER ==&gt; default value: 0</li>  <li>obp_from_date=DATE =&gt; default value: date of the oldest transaction registered (format below)</li>  <li>obp_to_date=DATE =&gt; default value: date of the newest transaction registered (format below)</li></ul><p><strong>Date format parameter</strong>: \"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\" (2014-07-01T00:00:00.000Z) ==&gt; time zone is UTC.</p>"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "roles",
+			"description": "Folder for roles",
+			"item": [
+				{
+					"name": "Get Roles",
+					"request": {
+						"url": "https://apisandbox.openbankproject.com/obp/v3.0.0/roles",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns all available roles</p><p>Login is required.</p>"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "root",
+			"description": "Folder for root",
+			"item": [
+				{
+					"name": "The root of the API",
+					"request": {
+						"url": "https://apisandbox.openbankproject.com/obp/v3.0.0/root",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Returns information about:</p><ul>  <li>API version</li>  <li>Hosted by information</li>  <li>Git Commit</li></ul>"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "sandbox",
+			"description": "Folder for sandbox",
+			"item": [
+				{
+					"name": "Create sandbox",
+					"request": {
+						"url": "https://apisandbox.openbankproject.com/obp/v3.0.0/sandbox/data-import",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Import bulk data into the sandbox (Authenticated access).</p><p>This call can be used to create banks, users, accounts and transactions which are stored in the local RDBMS.</p><p>The user needs to have CanCreateSandbox entitlement.</p><p>An example of an import set of data (json) can be found <a href=\"https://raw.githubusercontent.com/OpenBankProject/OBP-API/develop/src/main/scala/code/api/sandbox/example_data/2016-04-28/example_import.json\">here</a> Authentication is Mandatory</p>"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "search",
+			"description": "Folder for search",
+			"item": [
+				{
+					"name": "Search API Metrics via Elasticsearch.",
+					"request": {
+						"url": "https://apisandbox.openbankproject.com/obp/v3.0.0/search/metrics",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Search the API calls made to this API instance via Elastic Search.</p><p>Login is required.</p><p>CanSearchMetrics entitlement is required to search metrics data.</p><p>parameters:</p><p>esType - elasticsearch type</p><p>simple query:</p><p>q - plain_text_query</p><p>df - default field to search</p><p>sort - field to sort on</p><p>size - number of hits returned, default 10</p><p>from - show hits starting from</p><p>json query:</p><p>source - JSON_query_(URL-escaped)</p><p>example usage:</p><p>/search/metrics/q=findThis</p><p>or:</p><p>/search/metrics/source={\"query\":{\"query_string\":{\"query\":\"findThis\"}}}</p><p>Note!!</p><p>The whole JSON query string MUST be URL-encoded:</p><ul>  <li>For { use %7B</li>  <li>For } use %7D</li>  <li>For : use %3A</li>  <li>For \" use %22</li></ul><p>etc..</p><p>Only q, source and esType are passed to Elastic</p><p>Elastic simple query: https://www.elastic.co/guide/en/elasticsearch/reference/current/search-uri-request.html</p><p>Elastic JSON query: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-filter-context.html</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Search Warehouse Data Via Elasticsearch",
+					"request": {
+						"url": "https://apisandbox.openbankproject.com/obp/v3.0.0/search/warehouse",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Search warehouse data via Elastic Search.</p><p>Login is required.</p><p>CanSearchWarehouse entitlement is required to search warehouse data!</p><p>Send your email, name, project name and user_id to the admins to get access.</p><p>Elastic (search) is used in the background. See links below for syntax.</p><p>parameters:</p><p>esType - elasticsearch type</p><p>simple query:</p><p>q - plain_text_query</p><p>df - default field to search</p><p>sort - field to sort on</p><p>size - number of hits returned, default 10</p><p>from - show hits starting from</p><p>json query:</p><p>source - JSON_query_(URL-escaped)</p><p>Example usage:</p><p>GET /search/warehouse/q=findThis</p><p>or:</p><p>GET /search/warehouse/source={\"query\":{\"query_string\":{\"query\":\"findThis\"}}}</p><p>Note!!</p><p>The whole JSON query string MUST be URL-encoded:</p><ul>  <li>For { use %7B</li>  <li>For } use %7D</li>  <li>For : use %3A</li>  <li>For \" use %22</li></ul><p>etc..</p><p>Only q, source and esType are passed to Elastic</p><p>Elastic simple query: https://www.elastic.co/guide/en/elasticsearch/reference/current/search-uri-request.html</p><p>Elastic JSON query: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-filter-context.html</p><p>You can specify the esType thus: /search/warehouse/esType=type&amp;q=a</p>"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"description": "Folder for users",
+			"item": [
+				{
+					"name": "Get all Users",
+					"request": {
+						"url": "https://apisandbox.openbankproject.com/obp/v3.0.0/users",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get all users</p><p>Login is required. CanGetAnyUser entitlement is required,</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Create User.",
+					"request": {
+						"url": "https://apisandbox.openbankproject.com/obp/v3.0.0/users",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Creates OBP user.  No authorisation (currently) required.</p><p>Mimics current webform to Register.</p><p>Requires username(email) and password.</p><p>Returns 409 error if username not unique.</p><p>May require validation of email address.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users by Email Address",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/users/:USER_EMAIL",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"users",
+								":USER_EMAIL"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{USER_EMAIL}}",
+									"id": "USER_EMAIL"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get users by email address</p><p>Login is required. CanGetAnyUser entitlement is required,</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Entitlement",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/users/:USER_ID/entitlement/:ENTITLEMENT_ID",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"users",
+								":USER_ID",
+								"entitlement",
+								":ENTITLEMENT_ID"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{ENTITLEMENT_ID}}",
+									"id": "ENTITLEMENT_ID"
+								},
+								{
+									"value": "{{USER_ID}}",
+									"id": "USER_ID"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "<p>Delete Entitlement specified by ENTITLEMENT_ID for an user specified by USER_ID</p><p>Authentication is required and the user needs to be a Super Admin. Super Admins are listed in the Props file.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Entitlements specified by USER_ID",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/users/:USER_ID/entitlements",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"users",
+								":USER_ID",
+								"entitlements"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{USER_ID}}",
+									"id": "USER_ID"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Login is required.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Entitlement for a User.",
+					"request": {
+						"url": {
+							"raw": "https://apisandbox.openbankproject.com/obp/v3.0.0/users/:USER_ID/entitlements",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"apisandbox",
+								"openbankproject",
+								"com"
+							],
+							"path": [
+								"obp",
+								"v3.0.0",
+								"users",
+								":USER_ID",
+								"entitlements"
+							],
+							"query": [],
+							"variable": [
+								{
+									"value": "{{USER_ID}}",
+									"id": "USER_ID"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BANK_BODY"
+						},
+						"description": "<p>Create Entitlement. Grant Role to User.</p><p>Entitlements are used to grant System or Bank level roles to Users. (For Account level privileges, see Views)</p><p>For a System level Role (.e.g CanGetAnyUser), set bank_id to an empty string i.e. \"bank_id\":\"\"</p><p>For a Bank level Role (e.g. CanCreateAccount), set bank_id to a valid value e.g. \"bank_id\":\"my-bank-id\"</p><p>Authentication is required and the user needs to be a Super Admin. Super Admins are listed in the Props file.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User (Current)",
+					"request": {
+						"url": "https://apisandbox.openbankproject.com/obp/v3.0.0/users/current",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Get the logged in user</p><p>Login is required.</p>"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all customers for logged in user",
+					"request": {
+						"url": "https://apisandbox.openbankproject.com/obp/v3.0.0/users/current/customers",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "<p>Information about the currently authenticated user.</p><p>Authentication via OAuth is required.</p>"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
