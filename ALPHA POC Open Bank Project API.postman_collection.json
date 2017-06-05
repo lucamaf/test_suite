@@ -1,0 +1,88 @@
+{
+	"id": "0a66e5e1-2ba5-5cbf-317e-90e787fda56d",
+	"name": "ALPHA POC Open Bank Project API",
+	"description": "An PoC API for Alpha Bank, based on the Open Bank project. (C) Unisystems 2017, (c) TESOBE Ltd. 2011 - 2016. Licensed under the AGPL and commercial licences.",
+	"order": [],
+	"folders": [
+		{
+			"id": "b51b8365-be86-90f5-e972-8da14ca1d1a1",
+			"name": "banks",
+			"description": "Folder for banks",
+			"order": [
+				"bb44000f-c7b0-502b-07fc-d15ed2e95c08",
+				"476568eb-b7c5-aadc-d7db-3ae0b18edc59",
+				"8c9a979f-8bd9-e0d6-d42f-8388ea9ccba3"
+			],
+			"owner": "1021850"
+		}
+	],
+	"timestamp": 1413302258635,
+	"owner": "1021850",
+	"hasRequests": true,
+	"requests": [
+		{
+			"id": "476568eb-b7c5-aadc-d7db-3ae0b18edc59",
+			"headers": "",
+			"url": "https:///banks/alpha/accounts/:ACCOUNT_ID/transaction-request-types/SEPA/transaction-requests",
+			"pathVariables": {
+				"ACCOUNT_ID": "{{ACCOUNT_ID}}"
+			},
+			"preRequestScript": "",
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"description": "<p>Initiate a Payment via creating a Transaction Request.</p><p>In OBP, a <code>transaction request</code> may or may not result in a <code>transaction</code>. However, a <code>transaction</code> only has one possible state: completed.</p><p><code>Transactions</code> are modeled on items in a bank statement that represent the movement of money.</p><p><code>Transaction Requests</code> are requests to move money which may or may not succeeed and thus result in a <code>Transaction</code>.</p><p>Authentication is Mandatory</p>",
+			"descriptionFormat": "html",
+			"time": 1496696968095,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"collectionId": "0a66e5e1-2ba5-5cbf-317e-90e787fda56d",
+			"name": "Create Transaction Request (SEPA)",
+			"folder": "b51b8365-be86-90f5-e972-8da14ca1d1a1",
+			"rawModeData": "BANK_BODY"
+		},
+		{
+			"id": "8c9a979f-8bd9-e0d6-d42f-8388ea9ccba3",
+			"headers": "obp_from_date: {{obp_from_date}}\nobp_to_date: {{obp_to_date}}\n",
+			"url": "https:///banks/alpha/accounts/:ACCOUNT_ID/transactions",
+			"pathVariables": {
+				"ACCOUNT_ID": "{{ACCOUNT_ID}}"
+			},
+			"preRequestScript": "",
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"description": "<p>Returns transactions list of the account specified by ACCOUNT_ID.</p><p>Authentication via OAuth is required.</p><p>Possible custom headers for pagination:</p><ul>  <li>obp_from_date=DATE =&gt; default value: date of the oldest transaction registered (format below)</li>  <li>obp_to_date=DATE =&gt; default value: date of the newest transaction registered (format below)</li></ul><p><strong>Date format parameter</strong>: \"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\" (2014-07-01T00:00:00.000Z) ==&gt; time zone is UTC.</p>",
+			"descriptionFormat": "html",
+			"time": 1496696968095,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"collectionId": "0a66e5e1-2ba5-5cbf-317e-90e787fda56d",
+			"name": "Get Transactions for Account (Full)",
+			"folder": "b51b8365-be86-90f5-e972-8da14ca1d1a1"
+		},
+		{
+			"id": "bb44000f-c7b0-502b-07fc-d15ed2e95c08",
+			"headers": "",
+			"url": "https:///banks/alpha/accounts/:ACCOUNT_ID/account",
+			"pathVariables": {
+				"ACCOUNT_ID": "{{ACCOUNT_ID}}"
+			},
+			"preRequestScript": "",
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"description": "<p>Information returned about an account specified by ACCOUNT_ID:</p><ul>  <li>Number</li>  <li>Type</li>  <li>Balance</li>  <li>IBAN</li>  </ul><p><p/>PSD2 Context: PSD2 requires customers to have access to their account information via third party applications. This call provides balance and other account information via delegated authentication using OAuth.</p><p>OAuth authentication is required.</p>",
+			"descriptionFormat": "html",
+			"time": 1496696968095,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"collectionId": "0a66e5e1-2ba5-5cbf-317e-90e787fda56d",
+			"name": "Get Account by Id (Full)",
+			"folder": "b51b8365-be86-90f5-e972-8da14ca1d1a1"
+		}
+	]
+}
