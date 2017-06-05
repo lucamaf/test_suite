@@ -1,0 +1,295 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Praha",
+		"_postman_id": "3df1b1c5-d15c-1897-c80b-e3fcb50d7138",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "exchange rates",
+			"request": {
+				"url": "https://api.csas.cz/sandbox/webapi/api/v1/exchangerates",
+				"method": "GET",
+				"header": [
+					{
+						"key": "WEB-API-key",
+						"value": "277eea32-4863-47b5-91bd-dc547dc6e768",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": [
+				{
+					"id": "08782684-b82b-430a-b644-0240e3d831c6",
+					"name": "Praha fx",
+					"originalRequest": {
+						"url": "https://api.csas.cz/sandbox/webapi/api/v1/exchangerates",
+						"method": "GET",
+						"header": [
+							{
+								"key": "WEB-API-key",
+								"value": "277eea32-4863-47b5-91bd-dc547dc6e768",
+								"description": ""
+							}
+						],
+						"body": {}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "Connection",
+							"key": "Connection",
+							"value": "Keep-Alive",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"name": "Content-Encoding",
+							"key": "Content-Encoding",
+							"value": "gzip",
+							"description": "The type of encoding used on the data."
+						},
+						{
+							"name": "Content-Length",
+							"key": "Content-Length",
+							"value": "1064",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "Content-Type",
+							"key": "Content-Type",
+							"value": "application/json;charset=\"UTF-8\"",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "Date",
+							"key": "Date",
+							"value": "Mon, 05 Jun 2017 21:38:50 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "Keep-Alive",
+							"key": "Keep-Alive",
+							"value": "timeout=20, max=100",
+							"description": "Custom header"
+						},
+						{
+							"name": "Server",
+							"key": "Server",
+							"value": "Apache",
+							"description": "A name for the server"
+						},
+						{
+							"name": "Strict-Transport-Security",
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains; preload",
+							"description": "A HSTS Policy informing the HTTP client how long to cache the HTTPS only policy and whether this applies to subdomains."
+						},
+						{
+							"name": "Vary",
+							"key": "Vary",
+							"value": "Accept-Encoding,User-Agent",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"responseTime": 524,
+					"body": "[{\"shortName\":\"AUD\",\"validFrom\":\"2017-06-05\",\"name\":\"dolar\",\"country\":\"Australie\",\"amount\":1,\"valBuy\":16.73,\"valSell\":17.95,\"valMid\":17.339,\"currBuy\":16.906,\"currSell\":17.773,\"currMid\":17.339,\"move\":-0.09,\"cnbMid\":17.379,\"version\":1},{\"shortName\":\"BGN\",\"validFrom\":\"2017-06-05\",\"name\":\"leva\",\"country\":\"Bulharsko\",\"amount\":1,\"valBuy\":0.0,\"valSell\":0.0,\"valMid\":0.0,\"currBuy\":13.136,\"currSell\":13.809,\"currMid\":13.472,\"move\":-0.15,\"cnbMid\":13.475,\"version\":1},{\"shortName\":\"CAD\",\"validFrom\":\"2017-06-05\",\"name\":\"dolar\",\"country\":\"Kanada\",\"amount\":1,\"valBuy\":16.68,\"valSell\":17.89,\"valMid\":17.283,\"currBuy\":16.851,\"currSell\":17.715,\"currMid\":17.283,\"move\":-0.83,\"cnbMid\":17.379,\"version\":1},{\"shortName\":\"CHF\",\"validFrom\":\"2017-06-05\",\"name\":\"frank\",\"country\":\"Svycarsko\",\"amount\":1,\"valBuy\":23.54,\"valSell\":24.95,\"valMid\":24.243,\"currBuy\":23.637,\"currSell\":24.849,\"currMid\":24.243,\"move\":0.02,\"cnbMid\":24.204,\"version\":1},{\"shortName\":\"DKK\",\"validFrom\":\"2017-06-05\",\"name\":\"koruna\",\"country\":\"Dansko\",\"amount\":1,\"valBuy\":3.42,\"valSell\":3.67,\"valMid\":3.542,\"currBuy\":3.454,\"currSell\":3.631,\"currMid\":3.542,\"move\":-0.17,\"cnbMid\":3.543,\"version\":1},{\"shortName\":\"EUR\",\"validFrom\":\"2017-06-05\",\"name\":\"euro\",\"country\":\"EU\",\"amount\":1,\"valBuy\":25.64,\"valSell\":27.06,\"valMid\":26.35,\"currBuy\":25.691,\"currSell\":27.009,\"currMid\":26.35,\"move\":-0.15,\"cnbMid\":26.36,\"version\":1},{\"shortName\":\"GBP\",\"validFrom\":\"2017-06-05\",\"name\":\"libra\",\"country\":\"Britanie\",\"amount\":1,\"valBuy\":29.17,\"valSell\":30.97,\"valMid\":30.067,\"currBuy\":29.316,\"currSell\":30.819,\"currMid\":30.067,\"move\":-0.76,\"cnbMid\":30.204,\"version\":1},{\"shortName\":\"HKD\",\"validFrom\":\"2017-06-05\",\"name\":\"dolar\",\"country\":\"Hongkong\",\"amount\":1,\"valBuy\":0.0,\"valSell\":0.0,\"valMid\":0.0,\"currBuy\":2.925,\"currSell\":3.075,\"currMid\":3.0,\"move\":-0.6,\"cnbMid\":3.016,\"version\":1},{\"shortName\":\"HRK\",\"validFrom\":\"2017-06-05\",\"name\":\"kuna\",\"country\":\"Chorvatsko\",\"amount\":1,\"valBuy\":3.47,\"valSell\":3.66,\"valMid\":3.556,\"currBuy\":3.467,\"currSell\":3.645,\"currMid\":3.556,\"move\":-0.08,\"cnbMid\":3.557,\"version\":1},{\"shortName\":\"HUF\",\"validFrom\":\"2017-06-05\",\"name\":\"forint\",\"country\":\"Madarsko\",\"amount\":100,\"valBuy\":8.34,\"valSell\":8.81,\"valMid\":8.555,\"currBuy\":8.342,\"currSell\":8.769,\"currMid\":8.555,\"move\":-0.23,\"cnbMid\":8.546,\"version\":1},{\"shortName\":\"JPY\",\"validFrom\":\"2017-06-05\",\"name\":\"jen\",\"country\":\"Japonsko\",\"amount\":100,\"valBuy\":20.41,\"valSell\":21.89,\"valMid\":21.148,\"currBuy\":20.619,\"currSell\":21.676,\"currMid\":21.148,\"move\":0.15,\"cnbMid\":21.089,\"version\":1},{\"shortName\":\"NOK\",\"validFrom\":\"2017-06-05\",\"name\":\"koruna\",\"country\":\"Norsko\",\"amount\":1,\"valBuy\":2.68,\"valSell\":2.87,\"valMid\":2.774,\"currBuy\":2.704,\"currSell\":2.843,\"currMid\":2.774,\"move\":-0.22,\"cnbMid\":2.778,\"version\":1},{\"shortName\":\"NZD\",\"validFrom\":\"2017-06-05\",\"name\":\"dolar\",\"country\":\"Novy Zeland\",\"amount\":1,\"valBuy\":0.0,\"valSell\":0.0,\"valMid\":0.0,\"currBuy\":16.257,\"currSell\":17.091,\"currMid\":16.674,\"move\":0.29,\"cnbMid\":16.675,\"version\":1},{\"shortName\":\"PLN\",\"validFrom\":\"2017-06-05\",\"name\":\"zloty\",\"country\":\"Polsko\",\"amount\":1,\"valBuy\":6.12,\"valSell\":6.48,\"valMid\":6.299,\"currBuy\":6.142,\"currSell\":6.457,\"currMid\":6.299,\"move\":0.0,\"cnbMid\":6.287,\"version\":1},{\"shortName\":\"RON\",\"validFrom\":\"2017-06-05\",\"name\":\"lei\",\"country\":\"Rumunsko\",\"amount\":1,\"valBuy\":0.0,\"valSell\":0.0,\"valMid\":0.0,\"currBuy\":5.627,\"currSell\":5.915,\"currMid\":5.771,\"move\":-0.14,\"cnbMid\":5.774,\"version\":1},{\"shortName\":\"RUB\",\"validFrom\":\"2017-06-05\",\"name\":\"rubl\",\"country\":\"Rusko\",\"amount\":100,\"valBuy\":0.0,\"valSell\":0.0,\"valMid\":0.0,\"currBuy\":39.623,\"currSell\":42.925,\"currMid\":41.274,\"move\":-0.7,\"cnbMid\":41.527,\"version\":1},{\"shortName\":\"SEK\",\"validFrom\":\"2017-06-05\",\"name\":\"koruna\",\"country\":\"Svedsko\",\"amount\":1,\"valBuy\":2.61,\"valSell\":2.8,\"valMid\":2.703,\"currBuy\":2.635,\"currSell\":2.771,\"currMid\":2.703,\"move\":-0.04,\"cnbMid\":2.705,\"version\":1},{\"shortName\":\"TND\",\"validFrom\":\"2017-06-05\",\"name\":\"dinar\",\"country\":\"Tunisko\",\"amount\":1,\"valBuy\":0.0,\"valSell\":0.0,\"valMid\":0.0,\"currBuy\":9.426,\"currSell\":9.91,\"currMid\":9.668,\"move\":1.28,\"cnbMid\":0.0,\"version\":1},{\"shortName\":\"TRY\",\"validFrom\":\"2017-06-05\",\"name\":\"lira\",\"country\":\"Turecko\",\"amount\":1,\"valBuy\":0.0,\"valSell\":0.0,\"valMid\":0.0,\"currBuy\":6.477,\"currSell\":6.809,\"currMid\":6.643,\"move\":0.06,\"cnbMid\":6.658,\"version\":1},{\"shortName\":\"USD\",\"validFrom\":\"2017-06-05\",\"name\":\"dolar\",\"country\":\"USA\",\"amount\":1,\"valBuy\":22.69,\"valSell\":24.05,\"valMid\":23.371,\"currBuy\":22.787,\"currSell\":23.956,\"currMid\":23.371,\"move\":-0.6,\"cnbMid\":23.501,\"version\":1},{\"shortName\":\"ZAR\",\"validFrom\":\"2017-06-05\",\"name\":\"rand\",\"country\":\"JAR\",\"amount\":1,\"valBuy\":0.0,\"valSell\":0.0,\"valMid\":0.0,\"currBuy\":1.771,\"currSell\":1.862,\"currMid\":1.817,\"move\":0.55,\"cnbMid\":1.826,\"version\":1}]"
+				}
+			]
+		},
+		{
+			"name": "atm branches by lat long",
+			"request": {
+				"url": {
+					"raw": "https://api.csas.cz/sandbox/webapi/api/v2/places/atms/within?lat1=50.13&lng1=14.3&lat2=50.15&lng2=14.4",
+					"protocol": "https",
+					"auth": {},
+					"host": [
+						"api",
+						"csas",
+						"cz"
+					],
+					"path": [
+						"sandbox",
+						"webapi",
+						"api",
+						"v2",
+						"places",
+						"atms",
+						"within"
+					],
+					"query": [
+						{
+							"key": "lat1",
+							"value": "50.13",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "lng1",
+							"value": "14.3",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "lat2",
+							"value": "50.15",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "lng2",
+							"value": "14.4",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "WEB-API-key",
+						"value": "277eea32-4863-47b5-91bd-dc547dc6e768",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": [
+				{
+					"id": "d8e3cda1-a669-461c-9e39-421f331a9bf4",
+					"name": "Praha atm",
+					"originalRequest": {
+						"url": {
+							"raw": "https://api.csas.cz/sandbox/webapi/api/v2/places/atms/within?lat1=50.13&lng1=14.3&lat2=50.15&lng2=14.4",
+							"protocol": "https",
+							"auth": {},
+							"host": [
+								"api",
+								"csas",
+								"cz"
+							],
+							"path": [
+								"sandbox",
+								"webapi",
+								"api",
+								"v2",
+								"places",
+								"atms",
+								"within"
+							],
+							"query": [
+								{
+									"key": "lat1",
+									"value": "50.13",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "lng1",
+									"value": "14.3",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "lat2",
+									"value": "50.15",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "lng2",
+									"value": "14.4",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "WEB-API-key",
+								"value": "277eea32-4863-47b5-91bd-dc547dc6e768",
+								"description": ""
+							}
+						],
+						"body": {}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "Connection",
+							"key": "Connection",
+							"value": "Keep-Alive",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"name": "Content-Encoding",
+							"key": "Content-Encoding",
+							"value": "gzip",
+							"description": "The type of encoding used on the data."
+						},
+						{
+							"name": "Content-Length",
+							"key": "Content-Length",
+							"value": "361",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "Content-Type",
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "Date",
+							"key": "Date",
+							"value": "Mon, 05 Jun 2017 21:37:45 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "Keep-Alive",
+							"key": "Keep-Alive",
+							"value": "timeout=20, max=100",
+							"description": "Custom header"
+						},
+						{
+							"name": "Server",
+							"key": "Server",
+							"value": "Apache",
+							"description": "A name for the server"
+						},
+						{
+							"name": "Strict-Transport-Security",
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains; preload",
+							"description": "A HSTS Policy informing the HTTP client how long to cache the HTTPS only policy and whether this applies to subdomains."
+						},
+						{
+							"name": "Vary",
+							"key": "Vary",
+							"value": "Accept-Encoding,User-Agent",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"responseTime": 761,
+					"body": "{\"pageNumber\":0,\"pageCount\":1,\"pageSize\":2,\"totalItemCount\":2,\"items\":[{\"id\":392,\"location\":{\"lat\":50.133628,\"lng\":14.376546},\"type\":\"ATM\",\"name\":\"Česká spořitelna, a.s.\",\"address\":\"Brandejsovo náměstí 496/8\",\"city\":\"Praha 6\",\"postCode\":\"16500\",\"country\":\"CZ\",\"region\":\"Hlavní město Praha\",\"bankCode\":\"0800\",\"accessType\":\"nepřetržitě\",\"atmNumber\":\"0392\",\"cityPart\":\"Suchdol\"},{\"id\":214,\"location\":{\"lat\":50.130672,\"lng\":14.375148},\"type\":\"ATM\",\"name\":\"Česká zemědělská univerzita\",\"address\":\"Kamýcká 129\",\"city\":\"Praha 6\",\"postCode\":\"16500\",\"country\":\"CZ\",\"region\":\"Hlavní město Praha\",\"bankCode\":\"0800\",\"accessType\":\"nepřetržitě\",\"atmNumber\":\"0214\",\"cityPart\":\"Suchdol\"}]}"
+				}
+			]
+		}
+	]
+}
