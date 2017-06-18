@@ -1,14 +1,50 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "title": "bookstore"
-    },
-    "paths": {
-        "/books": {
-            "get": {}
-        },
-        "/books/order/{id}": {
-            "get": {}
-        }
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Camel REST API"
+  },
+  "host": "0.0.0.0",
+  "basePath": "/camel-rest-sql",
+  "tags": [
+    {
+      "name": "books",
+      "description": "Books REST service"
     }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/books/": {
+      "get": {
+        "tags": [
+          "books"
+        ],
+        "summary": "The list of all the books",
+        "parameters": [],
+        "x-camelContextId": "CamelRestSql",
+        "x-routeId": "books-api"
+      }
+    },
+    "/books/order/{id}": {
+      "get": {
+        "tags": [
+          "books"
+        ],
+        "summary": "Details of an order by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "x-camelContextId": "CamelRestSql",
+        "x-routeId": "order-api"
+      }
+    }
+  }
 }
