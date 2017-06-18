@@ -1,0 +1,106 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Camel REST API"
+  },
+  "host": "spring-boot-camel-rest-s-transformation.app.test.openshift.es",
+  "basePath": "/camel-rest-sql",
+  "tags": [
+    {
+      "name": "books",
+      "description": "Books REST service"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/books": {
+      "get": {
+        "tags": [
+          "books"
+        ],
+        "summary": "The list of all the books",
+        "parameters": [],
+        "x-camelContextId": "CamelRestSql",
+        "x-routeId": "books-api",
+        "responses": {
+          "200": {
+            "description": "A list of Books",
+            "schema": {
+              "type": "array",
+              "items": {
+                "required": [
+                  "description",
+                  "title"
+                ],
+                "properties": {
+                  "description": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/order/{id}": {
+      "get": {
+        "tags": [
+          "books"
+        ],
+        "summary": "Details of an order by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "order id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "x-camelContextId": "CamelRestSql",
+        "x-routeId": "order-api",
+        "responses": {
+          "200": {
+            "description": "A list of Books in an Order",
+            "schema": {
+              "type": "array",
+              "items": {
+                "required": [
+                  "id",
+                  "item",
+                  "amount",
+                  "description",
+                  "processed"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "item": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "integer"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "processed": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
