@@ -1,0 +1,525 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "ALPHA POC Open Bank Project API",
+    "description": "An PoC API for Alpha Bank, based on the Open Bank project. (C) Unisystems 2017, (c) TESOBE Ltd. 2011 - 2016. Licensed under the AGPL and commercial licences.",
+    "contact": {
+      "name": "UNISYSTEMS",
+      "url": "http://www.unisystems.com/",
+      "email": "AnagnostopoulosT@unisystems.gr"
+    },
+    "version": "v1.0"
+  },
+  "host": "bank-mock.app.test.openshift.es",
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "APIKeyHeader": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "user-key"
+    }
+  },
+  "security": [
+    {
+      "APIKeyHeader": []
+    }
+  ],
+  "paths": {
+    "/banks/alpha/accounts/{ACCOUNT_ID}/account": {
+      "get": {
+        "tags": [
+          "OBP_Spec_3_0_0"
+        ],
+        "summary": "Get Account by Id (Full)",
+        "description": "<p>Information returned about an account specified by ACCOUNT_ID:</p><ul>  <li>Number</li>  <li>Type</li>  <li>Balance</li>  <li>IBAN</li>  </ul><p><p/>PSD2 Context: PSD2 requires customers to have access to their account information via third party applications. This call provides balance and other account information via delegated authentication using OAuth.</p><p>OAuth authentication is required.</p>",
+        "operationId": "3_0_0-accountById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ACCOUNT_ID",
+            "description": "The account id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/AccountDetailsJSON"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ErrorUserNotLoggedIn"
+            }
+          },
+          "404": {
+            "description": "Resource Not Found",
+            "schema": {
+              "$ref": "#/definitions/ErrorBankAccountNotFound"
+            }
+          },
+          "500": {
+            "description": "Unexpected Error",
+            "schema": {
+              "$ref": "#/definitions/UnexpectedServerError"
+            }
+          }
+        }
+      }
+    },
+    "/banks/alpha/accounts/{ACCOUNT_ID}/transaction-request-types/SEPA/transaction-requests": {
+      "post": {
+        "tags": [
+          "OBP_Spec_2_1_0"
+        ],
+        "summary": "Create Transaction Request (SEPA)",
+        "description": "<p>Initiate a Payment via creating a Transaction Request.</p><p>In OBP, a <code>transaction request</code> may or may not result in a <code>transaction</code>. However, a <code>transaction</code> only has one possible state: completed.</p><p><code>Transactions</code> are modeled on items in a bank statement that represent the movement of money.</p><p><code>Transaction Requests</code> are requests to move money which may or may not succeeed and thus result in a <code>Transaction</code>.</p><p>Authentication is Mandatory</p>",
+        "operationId": "2_1_0-createTransactionRequest-48c6f7a4-b72d-4496-8258-d09fea28fa96",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "BANK_BODY",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TransactionRequestBodySEPAJSON"
+            }
+          },
+          {
+            "in": "path",
+            "name": "ACCOUNT_ID",
+            "description": "The account id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/TransactionResponseJSON"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ErrorInvalidJsonFormat"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ErrorUserNotLoggedIn"
+            }
+          },
+          "404": {
+            "description": "Resource Not Found",
+            "schema": {
+              "$ref": "#/definitions/ErrorBankAccountNotFound"
+            }
+          },
+          "409": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorInsufficientFundsAmount"
+            }
+          },
+          "500": {
+            "description": "Unexpected Error",
+            "schema": {
+              "$ref": "#/definitions/UnexpectedServerError"
+            }
+          }
+        }
+      }
+    },
+    "/banks/alpha/accounts/{ACCOUNT_ID}/transactions": {
+      "get": {
+        "tags": [
+          "OBP_Spec_3_0_0"
+        ],
+        "summary": "Get Transactions for Account (Full)",
+        "description": "<p>Returns transactions list of the account specified by ACCOUNT_ID.</p><p>Authentication via OAuth is required.</p><p>Possible custom headers for pagination:</p><ul>  <li>obp_from_date=DATE =&gt; default value: date of the oldest transaction registered (format below)</li>  <li>obp_to_date=DATE =&gt; default value: date of the newest transaction registered (format below)</li></ul><p><strong>Date format parameter</strong>: \"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\" (2014-07-01T00:00:00.000Z) ==&gt; time zone is UTC.</p>",
+        "operationId": "3_0_0-getTransactionsForBankAccount",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ACCOUNT_ID",
+            "description": "The account id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "obp_from_date",
+            "type": "string",
+            "required": true,
+            "in": "header",
+            "description": "Date of the oldest transaction registered.  (Date format parameter \"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\" (2014-07-01T00:00:00.000Z)"
+          },
+          {
+            "name": "obp_to_date",
+            "type": "string",
+            "required": true,
+            "in": "header",
+            "description": "Date of the newest transaction registered (Date format parameter \"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'\" (2014-07-01T00:00:00.000Z)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/TransactionsJSON"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ErrorInvalidJsonFormat"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ErrorUserNotLoggedIn"
+            }
+          },
+          "404": {
+            "description": "Resource Not Found",
+            "schema": {
+              "$ref": "#/definitions/ErrorBankAccountNotFound"
+            }
+          },
+          "500": {
+            "description": "Unexpected Error",
+            "schema": {
+              "$ref": "#/definitions/UnexpectedServerError"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ErrorInvalidJsonFormat": {
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "OBP-10001: Incorrect json format."
+        }
+      }
+    },
+    "ErrorBankAccountNotFound": {
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "OBP-30018: Bank Account not found. Please specify valid values for ACCOUNT_ID. "
+        }
+      }
+    },
+    "ErrorUserNotLoggedIn": {
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "OBP-20001: User not logged in. Authentication is required."
+        }
+      }
+    },
+    "ErrorInsufficientFundsAmount": {
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "OBP-30106: Insufficient funds in account."
+        }
+      }
+    },
+    "UnexpectedServerError": {
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "Unexpected Server Error"
+        }
+      }
+    },
+    "TransactionRequestBodySEPAJSON": {
+      "required": [
+        "value",
+        "to",
+        "request_excecution_date",
+        "bic"
+      ],
+      "properties": {
+        "bic": {
+          "type": "string",
+          "description": "Debtor Bank Identification Code. It must be of the form CRBAGRAAXXX",
+          "example": "CRBAGRAAXXX"
+        },
+        "request_excecution_date": {
+          "type": "string",
+          "description": "Request execution date"
+        },
+        "to": {
+          "$ref": "#/definitions/AccountJSON"
+        },
+        "value": {
+          "$ref": "#/definitions/AmountOfMoneyJSON"
+        },
+        "charge_policy": {
+          "type": "string",
+          "example": "SHARED"
+        },
+        "debit_reason": {
+          "type": "string",
+          "description": "Debit reason. 20 characters max",
+          "example": ""
+        },
+        "credit_category_purpose": {
+          "type": "string",
+          "description": "Credit reason category. Forwarded to creditor bank. 4 characters",
+          "example": ""
+        },
+        "description": {
+          "type": "string",
+          "description": "Credit reason"
+        }
+      }
+    },
+    "AmountOfMoneyJSON": {
+      "required": [
+        "currency",
+        "amount"
+      ],
+      "properties": {
+        "amount": {
+          "type": "string",
+          "example": "10"
+        },
+        "currency": {
+          "type": "string",
+          "example": "EUR"
+        }
+      }
+    },
+    "AccountJSON": {
+      "required": [
+        "id",
+        "label",
+        "bank_id"
+      ],
+      "properties": {
+        "bank_id": {
+          "type": "string",
+          "example": "alpha"
+        },
+        "label": {
+          "type": "string",
+          "example": "OBP"
+        },
+        "id": {
+          "type": "string",
+          "example": "101002101047414"
+        }
+      }
+    },
+    "AccountDetailsJSON": {
+      "required": [
+        "id",
+        "label",
+        "number",
+        "balance",
+        "IBAN",
+        "swift_bic",
+        "bank_id"
+      ],
+      "properties": {
+        "number": {
+          "type": "string",
+          "example": "123"
+        },
+        "IBAN": {
+          "type": "string",
+          "example": "GR1601401010101002101047414"
+        },
+        "label": {
+          "type": "string",
+          "example": "None"
+        },
+        "swift_bic": {
+          "type": "string",
+          "example": "CRBAGRAA"
+        },
+        "balance": {
+          "$ref": "#/definitions/AmountOfMoneyJSON"
+        },
+        "bank_id": {
+          "type": "string",
+          "example": "alpha"
+        },
+        "id": {
+          "type": "string",
+          "example": 101002101047414
+        }
+      }
+    },
+    "ThisAccountJSON": {
+      "required": [
+        "id",
+        "number",
+        "IBAN",
+        "swift_bic"
+      ],
+      "properties": {
+        "number": {
+          "type": "string",
+          "example": "123"
+        },
+        "IBAN": {
+          "type": "string",
+          "example": "GR1601401010101002101047414"
+        },
+        "swift_bic": {
+          "type": "string",
+          "example": "CRBAGRAA"
+        },
+        "id": {
+          "type": "string",
+          "example": 101002101047414
+        }
+      }
+    },
+    "OtherAccountJSON": {
+      "required": [
+        "id",
+        "number",
+        "IBAN",
+        "swift_bic"
+      ],
+      "properties": {
+        "number": {
+          "type": "string",
+          "example": "123"
+        },
+        "IBAN": {
+          "type": "string",
+          "example": "GR1601401010101002101047414"
+        },
+        "swift_bic": {
+          "type": "string",
+          "example": "CRBAGRAA"
+        },
+        "id": {
+          "type": "string",
+          "example": 101002101047414
+        }
+      }
+    },
+    "TransactionDetailsJSON": {
+      "required": [
+        "type",
+        "description",
+        "posted",
+        "completed",
+        "new_balance",
+        "value"
+      ],
+      "properties": {
+        "new_balance": {
+          "$ref": "#/definitions/AmountOfMoneyJSON"
+        },
+        "description": {
+          "type": "string",
+          "example": "GOOD"
+        },
+        "completed": {
+          "type": "string",
+          "format": "date",
+          "example": "Tue Jan 22 00:08:00 UTC 2013"
+        },
+        "type": {
+          "type": "string",
+          "example": "AC"
+        },
+        "value": {
+          "$ref": "#/definitions/AmountOfMoneyJSON"
+        },
+        "posted": {
+          "type": "string",
+          "format": "date",
+          "example": "Tue Jan 22 00:08:00 UTC 2013"
+        }
+      }
+    },
+    "TransactionJSON": {
+      "required": [
+        "id",
+        "this_account",
+        "other_account",
+        "details"
+      ],
+      "properties": {
+        "this_account": {
+          "$ref": "#/definitions/ThisAccountJSON"
+        },
+        "id": {
+          "type": "string",
+          "example": "5995d6a2-01b3-423c-a173-5481df49bdaf"
+        },
+        "details": {
+          "$ref": "#/definitions/TransactionDetailsJSON"
+        },
+        "other_account": {
+          "$ref": "#/definitions/OtherAccountJSON"
+        }
+      }
+    },
+    "TransactionsJSON": {
+      "required": [
+        "transactions"
+      ],
+      "properties": {
+        "transactions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TransactionJSON"
+          }
+        }
+      }
+    },
+    "TransactionResponseJSON": {
+      "required": [
+        "id",
+        "status",
+        "reason_code",
+        "additional_info",
+        "date"
+      ],
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date",
+          "example": "Tue Jan 22 00:08:00 UTC 2013"
+        },
+        "id": {
+          "type": "string",
+          "example": "4050046c-63b3-4868-8a22-14b4181d33a6"
+        },
+        "status": {
+          "type": "string",
+          "example": "COMPLETED"
+        },
+        "reason_code": {
+          "type": "string",
+          "example": 0
+        },
+        "additional_info": {
+          "type": "string",
+          "example": "Success"
+        }
+      }
+    }
+  }
+}
