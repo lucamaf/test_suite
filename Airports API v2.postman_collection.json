@@ -1,0 +1,258 @@
+{
+	"id": "5b9b11e6-d013-b173-ea4e-fdce49e02783",
+	"name": "Airports API v2",
+	"description": "Returns all airports",
+	"order": [
+		"95063b75-3824-c66d-eb6b-5310c7c919a4"
+	],
+	"folders": [
+		{
+			"id": "eeb1b35e-ee57-3f41-da06-a9139542880b",
+			"name": "countrycode",
+			"description": "Folder for countrycode",
+			"order": [
+				"c418567b-ecc2-f667-93b7-95cab997ef49"
+			],
+			"owner": "1021850"
+		},
+		{
+			"id": "e56e7a72-1a91-1eac-4cda-0c5b059912da",
+			"name": "nearest",
+			"description": "Folder for nearest",
+			"order": [
+				"b275514f-3e4f-40cc-b563-7a1f1696f451",
+				"9628fd1b-0ae7-c9a3-c66c-9fb002b10fda"
+			],
+			"owner": "1021850"
+		},
+		{
+			"id": "1183672d-875d-0317-4983-d8b69dfce3df",
+			"name": "{id}",
+			"description": "Folder for {id}",
+			"order": [
+				"ecc9f136-d9b7-9ea8-8ec0-20ff805a70e6"
+			],
+			"owner": "1021850"
+		}
+	],
+	"timestamp": 1413302258635,
+	"owner": "1021850",
+	"hasRequests": true,
+	"requests": [
+		{
+			"id": "95063b75-3824-c66d-eb6b-5310c7c919a4",
+			"headers": "Accept: text/plain, application/json, text/json\n",
+			"url": "https://api.transavia.com/v2/airports/",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"description": "Retrieve all airports.",
+			"descriptionFormat": "html",
+			"time": 1498746172218,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"collectionId": "5b9b11e6-d013-b173-ea4e-fdce49e02783",
+			"name": "https://api.transavia.com/v2/airports/"
+		},
+		{
+			"id": "9628fd1b-0ae7-c9a3-c66c-9fb002b10fda",
+			"headers": "Accept: text/plain, application/json, text/json\n",
+			"url": "https://api.transavia.com/v2/airports/nearest/:id?maxDistanceInKm={{maxDistanceInKm}}&limit={{limit}}",
+			"pathVariables": {
+				"id": "{{id}}"
+			},
+			"preRequestScript": "",
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"description": "Retrieve nearest airports by station id.",
+			"descriptionFormat": "html",
+			"time": 1498746172218,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"collectionId": "5b9b11e6-d013-b173-ea4e-fdce49e02783",
+			"name": "https://api.transavia.com/v2/airports/nearest/:id?maxDistanceInKm={{maxDistanceInKm}}&limit={{limit}}",
+			"folder": "e56e7a72-1a91-1eac-4cda-0c5b059912da"
+		},
+		{
+			"id": "b275514f-3e4f-40cc-b563-7a1f1696f451",
+			"headers": "Accept: text/plain, application/json, text/json\n",
+			"url": "https://api.transavia.com/v2/airports/nearest?latitude={{latitude}}&longitude={{longitude}}&maxDistanceInKm={{maxDistanceInKm}}&limit={{limit}}",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"description": "Retrieve nearest airports by geo coordinates (latitude/longitude).",
+			"descriptionFormat": "html",
+			"time": 1498746172218,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"collectionId": "5b9b11e6-d013-b173-ea4e-fdce49e02783",
+			"name": "https://api.transavia.com/v2/airports/nearest?latitude={{latitude}}&longitude={{longitude}}&maxDistanceInKm={{maxDistanceInKm}}&limit={{limit}}",
+			"folder": "e56e7a72-1a91-1eac-4cda-0c5b059912da"
+		},
+		{
+			"id": "c418567b-ecc2-f667-93b7-95cab997ef49",
+			"headers": "Accept: text/plain, application/json, text/json\napikey: DStMC0qJdWEiO9NxGzOLESPjjQyue2zZ\n",
+			"headerData": [
+				{
+					"key": "Accept",
+					"value": "text/plain, application/json, text/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "apikey",
+					"value": "DStMC0qJdWEiO9NxGzOLESPjjQyue2zZ",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://api.transavia.com/v2/airports/countrycode/NL",
+			"queryParams": [],
+			"preRequestScript": "",
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1498746462266,
+			"name": "https://api.transavia.com/v2/airports/countrycode/:countryCode",
+			"description": "Retrieve airports by country code.",
+			"collectionId": "5b9b11e6-d013-b173-ea4e-fdce49e02783",
+			"responses": [
+				{
+					"status": "",
+					"responseCode": {
+						"code": 200,
+						"name": "OK",
+						"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+					},
+					"time": 97,
+					"headers": [
+						{
+							"key": "Content-Encoding",
+							"value": "gzip",
+							"name": "Content-Encoding",
+							"description": "The type of encoding used on the data."
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 29 Jun 2017 14:27:36 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "ARRAffinity=f17b25248b3dc021592458f14eaae49a5eb12920f070a2881fbf3f4d1beac8d9;Path=/;Domain=airportsapi-2-1-3-prd.transavia-api.p.azurewebsites.net",
+							"name": "Set-Cookie",
+							"description": "an HTTP cookie"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "X-API-Version",
+							"value": "2.1.3.0",
+							"name": "X-API-Version",
+							"description": "Custom header"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET",
+							"name": "X-Powered-By",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "[{\"id\":\"AMS\",\"name\":\"Amsterdam (Schiphol)\",\"city\":\"Amsterdam\",\"country\":{\"code\":\"NL\",\"name\":\"Netherlands\"},\"geoCoordinates\":{\"latitude\":52.308333,\"longitude\":4.768056},\"self\":{\"href\":\"https://api.transavia.com/v2/airports/AMS\"}},{\"id\":\"EIN\",\"name\":\"Eindhoven\",\"city\":\"Eindhoven\",\"country\":{\"code\":\"NL\",\"name\":\"Netherlands\"},\"geoCoordinates\":{\"latitude\":51.453333,\"longitude\":5.388889},\"self\":{\"href\":\"https://api.transavia.com/v2/airports/EIN\"}},{\"id\":\"GRQ\",\"name\":\"Groningen\",\"city\":\"Groningen\",\"country\":{\"code\":\"NL\",\"name\":\"Netherlands\"},\"geoCoordinates\":{\"latitude\":53.120278,\"longitude\":6.575556},\"self\":{\"href\":\"https://api.transavia.com/v2/airports/GRQ\"}},{\"id\":\"RTM\",\"name\":\"Rotterdam/ The Hague\",\"city\":\"Rotterdam/ The Hague\",\"country\":{\"code\":\"NL\",\"name\":\"Netherlands\"},\"geoCoordinates\":{\"latitude\":51.958333,\"longitude\":4.444444},\"self\":{\"href\":\"https://api.transavia.com/v2/airports/RTM\"}}]",
+					"language": "json",
+					"previewType": "text",
+					"searchResultScrolledTo": -1,
+					"forceNoPretty": false,
+					"write": true,
+					"empty": false,
+					"failed": false,
+					"code": 200,
+					"responseSize": {
+						"body": 902,
+						"header": 362,
+						"total": 1264
+					},
+					"mimeType": "text",
+					"fileName": "response.json",
+					"dataURI": "data:application/json;base64, W3siaWQiOiJBTVMiLCJuYW1lIjoiQW1zdGVyZGFtIChTY2hpcGhvbCkiLCJjaXR5IjoiQW1zdGVyZGFtIiwiY291bnRyeSI6eyJjb2RlIjoiTkwiLCJuYW1lIjoiTmV0aGVybGFuZHMifSwiZ2VvQ29vcmRpbmF0ZXMiOnsibGF0aXR1ZGUiOjUyLjMwODMzMywibG9uZ2l0dWRlIjo0Ljc2ODA1Nn0sInNlbGYiOnsiaHJlZiI6Imh0dHBzOi8vYXBpLnRyYW5zYXZpYS5jb20vdjIvYWlycG9ydHMvQU1TIn19LHsiaWQiOiJFSU4iLCJuYW1lIjoiRWluZGhvdmVuIiwiY2l0eSI6IkVpbmRob3ZlbiIsImNvdW50cnkiOnsiY29kZSI6Ik5MIiwibmFtZSI6Ik5ldGhlcmxhbmRzIn0sImdlb0Nvb3JkaW5hdGVzIjp7ImxhdGl0dWRlIjo1MS40NTMzMzMsImxvbmdpdHVkZSI6NS4zODg4ODl9LCJzZWxmIjp7ImhyZWYiOiJodHRwczovL2FwaS50cmFuc2F2aWEuY29tL3YyL2FpcnBvcnRzL0VJTiJ9fSx7ImlkIjoiR1JRIiwibmFtZSI6Ikdyb25pbmdlbiIsImNpdHkiOiJHcm9uaW5nZW4iLCJjb3VudHJ5Ijp7ImNvZGUiOiJOTCIsIm5hbWUiOiJOZXRoZXJsYW5kcyJ9LCJnZW9Db29yZGluYXRlcyI6eyJsYXRpdHVkZSI6NTMuMTIwMjc4LCJsb25naXR1ZGUiOjYuNTc1NTU2fSwic2VsZiI6eyJocmVmIjoiaHR0cHM6Ly9hcGkudHJhbnNhdmlhLmNvbS92Mi9haXJwb3J0cy9HUlEifX0seyJpZCI6IlJUTSIsIm5hbWUiOiJSb3R0ZXJkYW0vIFRoZSBIYWd1ZSIsImNpdHkiOiJSb3R0ZXJkYW0vIFRoZSBIYWd1ZSIsImNvdW50cnkiOnsiY29kZSI6Ik5MIiwibmFtZSI6Ik5ldGhlcmxhbmRzIn0sImdlb0Nvb3JkaW5hdGVzIjp7ImxhdGl0dWRlIjo1MS45NTgzMzMsImxvbmdpdHVkZSI6NC40NDQ0NDR9LCJzZWxmIjp7ImhyZWYiOiJodHRwczovL2FwaS50cmFuc2F2aWEuY29tL3YyL2FpcnBvcnRzL1JUTSJ9fV0=",
+					"name": "Netherlands airport",
+					"id": "53877947-e6f3-9832-0a7a-917a2e2c782e",
+					"request": {
+						"url": "https://api.transavia.com/v2/airports/countrycode/NL",
+						"pathVariables": {},
+						"pathVariableData": [],
+						"queryParams": [],
+						"headerData": [
+							{
+								"key": "Accept",
+								"value": "text/plain, application/json, text/json",
+								"description": "",
+								"enabled": true,
+								"disabled": false
+							},
+							{
+								"key": "apikey",
+								"value": "DStMC0qJdWEiO9NxGzOLESPjjQyue2zZ",
+								"description": "",
+								"enabled": true,
+								"disabled": false
+							}
+						],
+						"headers": "Accept: text/plain, application/json, text/json\napikey: DStMC0qJdWEiO9NxGzOLESPjjQyue2zZ\n",
+						"data": [],
+						"method": "GET",
+						"dataMode": "params"
+					}
+				}
+			]
+		},
+		{
+			"id": "ecc9f136-d9b7-9ea8-8ec0-20ff805a70e6",
+			"headers": "Accept: text/plain, application/json, text/json\n",
+			"url": "https://api.transavia.com/v2/airports/:id",
+			"pathVariables": {
+				"id": "{{id}}"
+			},
+			"preRequestScript": "",
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"description": "Retrieve airport by id.",
+			"descriptionFormat": "html",
+			"time": 1498746172218,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"collectionId": "5b9b11e6-d013-b173-ea4e-fdce49e02783",
+			"name": "https://api.transavia.com/v2/airports/:id",
+			"folder": "1183672d-875d-0317-4983-d8b69dfce3df"
+		}
+	]
+}
